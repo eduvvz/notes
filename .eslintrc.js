@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
   },
   extends: ['airbnb', 'prettier', 'prettier/react'],
-  parser: 'babel-eslint',
+  plugins: ['prettier', 'react', 'react-hooks', 'jsx-a11y'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -12,8 +12,8 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ['react', 'prettier'],
   rules: {
+    'react/prop-types': ['error'],
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.js'] }],
     'import/prefer-default-export': 'off',
