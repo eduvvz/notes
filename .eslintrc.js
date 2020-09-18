@@ -10,7 +10,7 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 12,
-    sourceType: "module",
+    sourceType: 'module',
   },
   rules: {
     'react/prop-types': ['error'],
@@ -23,6 +23,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'react/no-array-index-key': 0,
+    'react/jsx-props-no-spreading': 'off',
     'jsx-a11y/media-has-caption': [
       0,
       {

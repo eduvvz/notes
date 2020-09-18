@@ -4,11 +4,7 @@ import useStyles from './styles';
 function Logo() {
   const classes = useStyles();
 
-  return (
-    <div className={classes.logo_wrapper}>
-      <span>My Notes</span>
-    </div>
-  );
+  return <span className={classes.logo}>My Notes</span>;
 }
 
 export default Logo;
