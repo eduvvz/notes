@@ -9,7 +9,8 @@ import AppBar from '../AppBar';
 import newTheme from './theme';
 import { APP_NAME } from '../../constants';
 import { getRandomColor } from '../../utils/colors';
-import { setPrimaryColor } from './actions';
+import { setAccentColor } from './actions';
+import PageWrapper from './components/PageWrapper';
 
 const theme = createMuiTheme({
   ...newTheme,
@@ -19,8 +20,8 @@ function Layout({ children, title }) {
   const dispatch = useDispatch();
 
   const defineColorsTheme = useCallback(() => {
-    const primaryColor = getRandomColor();
-    dispatch(setPrimaryColor(primaryColor));
+    const accentColor = getRandomColor();
+    dispatch(setAccentColor(accentColor));
   }, []);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ function Layout({ children, title }) {
       <CssBaseline />
       <main id="main">
         <AppBar />
-        <div>{children}</div>
+        <PageWrapper>{children}</PageWrapper>
       </main>
     </ThemeProvider>
   );

@@ -6,8 +6,8 @@ import Logo from '../UI/Logo';
 import useStyles from './styles';
 
 function AppBar() {
-  const { primaryColor } = useSelector((state) => state.layout.pallete);
-  const classes = useStyles({ primaryColor });
+  const { accentColor } = useSelector((state) => state.layout.pallete);
+  const classes = useStyles({ accentColor });
 
   const MenuIcon = dynamic(() => import('./components/MenuIcon'), {
     ssr: false,
@@ -17,12 +17,12 @@ function AppBar() {
     <Box className={classes.app_bar_wrapper} alignItems="center">
       <Container>
         <Grid container justify="space-between" alignItems="center">
-          <Grid xs={2} item>
+          <Grid xs={5} item>
             <Logo />
           </Grid>
-          <Grid xs={1} item>
+          <Box className={classes.btn_menu_wrapper}>
             <MenuIcon />
-          </Grid>
+          </Box>
         </Grid>
       </Container>
     </Box>

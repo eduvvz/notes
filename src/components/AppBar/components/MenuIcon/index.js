@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Lottie from 'lottie-web-react';
 import useStyles from './styles';
 import * as animationData from '../../../../assets/animations/hamburguer-lottie.json';
 import { LOTTIE_PLAY_STATES } from '../../../../utils/animations';
+import { closeSidebar, openSidebar } from '../../../Layout/actions';
 
 function MenuIcon() {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [animMenuIcon, setAnimMenuIcon] = useState({
     diretion: 1,
@@ -32,6 +35,7 @@ function MenuIcon() {
         forceFlag: !animMenuIcon.forceFlag,
         playingState: LOTTIE_PLAY_STATES.PLAY,
       });
+      dispatch(closeSidebar());
     } else {
       setAnimMenuIcon({
         diretion: 1,
@@ -39,6 +43,7 @@ function MenuIcon() {
         forceFlag: !animMenuIcon.forceFlag,
         playingState: LOTTIE_PLAY_STATES.STOP,
       });
+      dispatch(openSidebar());
     }
   }
 
