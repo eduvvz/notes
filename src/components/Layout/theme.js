@@ -18,6 +18,16 @@ const theme = createMuiTheme({
       primary: 'white',
     },
   },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        a: {
+          color: 'inherit',
+          textDecoration: 'none',
+        },
+      },
+    },
+  },
 });
 
 export default theme;

@@ -18,7 +18,7 @@ function AppBar() {
       <Container>
         <Grid container justify="space-between" alignItems="center">
           <Grid xs={5} item>
-            <Logo />
+            <Logo isLinkToHome />
           </Grid>
           <Box className={classes.btn_menu_wrapper}>
             <MenuIcon />

@@ -32,7 +32,7 @@ function MenuIcon() {
           value: 45,
           isFrame: true,
         },
-        forceFlag: !animMenuIcon.forceFlag,
+        forceFlag: false,
         playingState: LOTTIE_PLAY_STATES.PLAY,
       });
       dispatch(closeSidebar());
@@ -40,7 +40,7 @@ function MenuIcon() {
       setAnimMenuIcon({
         diretion: 1,
         goToAndPlay: null,
-        forceFlag: !animMenuIcon.forceFlag,
+        forceFlag: true,
         playingState: LOTTIE_PLAY_STATES.STOP,
       });
       dispatch(openSidebar());

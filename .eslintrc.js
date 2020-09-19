@@ -24,6 +24,7 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 0,
     'react/no-array-index-key': 0,
     'react/jsx-props-no-spreading': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/media-has-caption': [
       0,
       {
