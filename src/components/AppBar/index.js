@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Box, Grid, Container } from '@material-ui/core';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
@@ -29,4 +29,4 @@ function AppBar() {
   );
 }
 
-export default AppBar;
+export default memo(AppBar);

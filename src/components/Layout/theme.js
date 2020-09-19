@@ -1,4 +1,12 @@
-export default {
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: "'Montserrat', sans-serif",
+    h1: {
+      fontSize: 65,
+    },
+  },
   palette: {
     primary: {
       main: '#383838',
@@ -10,4 +18,6 @@ export default {
       primary: 'white',
     },
   },
-};
+});
+
+export default theme;
