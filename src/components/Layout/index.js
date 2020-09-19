@@ -10,9 +10,11 @@ import { APP_NAME } from '../../constants';
 import { getRandomColor } from '../../utils/colors';
 import { setAccentColor } from './actions';
 import PageWrapper from './components/PageWrapper';
+import useStyles from './styles';
 
 function Layout({ children, title }) {
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const defineColorsTheme = useCallback(() => {
     const accentColor = getRandomColor();
@@ -29,7 +31,7 @@ function Layout({ children, title }) {
         <title>{`${APP_NAME} ${title && '-'} ${title}`}</title>
       </Head>
       <CssBaseline />
-      <main id="main">
+      <main id="main" className={classes.main}>
         <AppBar />
         <PageWrapper>{children}</PageWrapper>
       </main>

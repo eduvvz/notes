@@ -22,10 +22,10 @@ function Home() {
       <Banner urlImage={bgHome}>
         <Container className={classes.banner_container}>
           <div>
-            <Typography variant="h1" align="center">
+            <Typography variant="h3" align="center">
               Aproveite o <Logo large /> e{' '}
             </Typography>
-            <Typography variant="h1" align="center">
+            <Typography variant="h3" align="center">
               <TypeWitter wordsToType={wordsToType} />
             </Typography>
           </div>
