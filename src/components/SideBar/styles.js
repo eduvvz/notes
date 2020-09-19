@@ -11,7 +11,23 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: 0,
     right: isOpen ? 0 : -300,
+    padding: theme.spacing(2, 4),
   }),
+  nav_item: ({ accentColor }) => ({
+    width: '100%',
+    height: 61,
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+    transition: '0.2s',
+
+    '&:HOVER': {
+      color: `${accentColor} !important`,
+    },
+  }),
+  nav_item_icon: {
+    marginRight: theme.spacing(1),
+  },
 }));
 
 export default useStyles;
