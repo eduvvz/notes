@@ -29,6 +29,9 @@ const theme = createMuiTheme({
         button: {
           backgroundColor: 'inherit',
           color: 'inherit',
+          border: 'inherit',
+          cursor: 'pointer',
+
           '&:FOCUS': {
             outlineStyle: 'none',
           },

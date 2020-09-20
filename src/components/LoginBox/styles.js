@@ -7,11 +7,32 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.light,
     borderRadius: 10,
     margin: 'auto',
-    padding: theme.spacing(6, 4),
+    padding: theme.spacing(4),
+    overflow: 'hidden',
   }),
+  btn_back_wrapper: {
+    height: 31,
+  },
   input_wrapper: {
     height: 70,
-    marginBottom: theme.spacing(1),
+    position: 'relative',
+    margin: theme.spacing(2, 0, 1),
+  },
+  input_email_wrapper: {
+    position: 'absolute',
+    width: '100%',
+    transition: '1s',
+  },
+  input_email_slide_out: {
+    transform: 'translateX(120%)',
+  },
+  input_password_wrapper: {
+    position: 'absolute',
+    width: '100%',
+    transition: '1s',
+  },
+  input_password_slide_out: {
+    transform: 'translateX(-120%)',
   },
 }));
 

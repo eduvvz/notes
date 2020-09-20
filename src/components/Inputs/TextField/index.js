@@ -5,7 +5,15 @@ import { TextField as MUITextField } from '@material-ui/core';
 import useStyles from './styles';
 import Loader from '../../UI/Loader';
 
-function TextField({ label, value, onChange, showLoader, error, helperText }) {
+function TextField({
+  label,
+  value,
+  onChange,
+  showLoader,
+  error,
+  helperText,
+  type,
+}) {
   const { accentColor } = useSelector((state) => state.layout.pallete);
   const classes = useStyles({ accentColor, error });
 
@@ -15,9 +23,10 @@ function TextField({ label, value, onChange, showLoader, error, helperText }) {
       helperText={helperText}
       label={label}
       value={value}
-      onChange={onChange}
+      onChange={(event) => onChange(event.target.value)}
       fullWidth
       className={classes.textField}
+      type={type}
       InputProps={{
         endAdornment: showLoader && <Loader size={20} />,
       }}
@@ -30,6 +39,10 @@ function TextField({ label, value, onChange, showLoader, error, helperText }) {
   );
 }
 
+TextField.defaultProps = {
+  type: 'text',
+};
+
 TextField.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
@@ -37,6 +50,7 @@ TextField.propTypes = {
   showLoader: PropTypes.bool,
   error: PropTypes.bool,
   helperText: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default TextField;
