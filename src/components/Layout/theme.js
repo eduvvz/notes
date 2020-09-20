@@ -13,6 +13,7 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: '#292929',
+      light: '#4d4d4d',
     },
     text: {
       primary: 'white',
@@ -24,6 +25,13 @@ const theme = createMuiTheme({
         a: {
           color: 'inherit',
           textDecoration: 'none',
+        },
+        button: {
+          backgroundColor: 'inherit',
+          color: 'inherit',
+          '&:FOCUS': {
+            outlineStyle: 'none',
+          },
         },
       },
     },
