@@ -3,14 +3,14 @@ import { Grid, Typography } from '@material-ui/core';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useStyles from './styles';
-import SendButton from '../UI/Buttons/SendButton';
-import DiscreetButton from '../UI/Buttons/DiscreetButton';
-import GridBoxGlow from '../UI/GridBoxGlow';
-import TextField from '../Inputs/TextField';
-import UserService from '../../services/UserService';
-import { showSucessToast } from '../../utils/toast';
-import { handlerFormErrorValidation } from '../../services/handleErros';
-import useFormState from '../../utils/hooks/useFormState';
+import SendButton from '../../../UI/Buttons/SendButton';
+import DiscreetButton from '../../../UI/Buttons/DiscreetButton';
+import GridBoxGlow from '../../../UI/GridBoxGlow';
+import TextField from '../../../Inputs/TextField';
+import UserService from '../../../../services/UserService';
+import { showSucessToast } from '../../../../utils/toast';
+import { handlerFormErrorValidation } from '../../../../services/handleErros';
+import useFormState from '../../../../utils/hooks/useFormState';
 
 function RegisterBox() {
   const router = useRouter();

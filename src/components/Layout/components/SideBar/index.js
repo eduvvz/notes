@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { SpeakerNotesOutlined, ExitToAppOutlined } from '@material-ui/icons';
 import useStyles from './styles';
-import { closeSidebar } from '../Layout/actions';
+import { closeSidebar } from '../../actions';
 
 function SideBar() {
   const dispatch = useDispatch();

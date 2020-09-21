@@ -1,8 +1,7 @@
 import React from 'react';
-import { Container, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Layout from '../../components/Layout';
 import useStyles from './styles';
-import RegisterBox from '../../components/User/RegisterBox';
 
 function RegisterPage() {
   const classes = useStyles();
@@ -14,11 +13,7 @@ function RegisterPage() {
         justify="center"
         alignItems="center"
         className={classes.container}
-      >
-        <Container>
-          <RegisterBox />
-        </Container>
-      </Grid>
+      />
     </Layout>
   );
 }

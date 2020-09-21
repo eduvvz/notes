@@ -4,20 +4,22 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { ArrowBack } from '@material-ui/icons';
 import useStyles from './styles';
-import TextField from '../Inputs/TextField';
-import SendButton from '../UI/Buttons/SendButton';
-import UserService from '../../services/UserService';
-import DiscreetButton from '../UI/Buttons/DiscreetButton';
-import { STEPS_LOGIN } from './contants';
-import GridBoxGlow from '../UI/GridBoxGlow';
-import { handlerFormErrorValidation } from '../../services/handleErros';
-import useFormState from '../../utils/hooks/useFormState';
+import TextField from '../../../Inputs/TextField';
+import SendButton from '../../../UI/Buttons/SendButton';
+import UserService from '../../../../services/UserService';
+import DiscreetButton from '../../../UI/Buttons/DiscreetButton';
+import { STEPS_LOGIN } from './constants';
+import GridBoxGlow from '../../../UI/GridBoxGlow';
+import { handlerFormErrorValidation } from '../../../../services/handleErros';
+import useFormState from '../../../../utils/hooks/useFormState';
+import useAuth from '../../../../utils/hooks/useAuth';
 
 function LoginBox() {
   const [inputs, setInputs] = useFormState([
     { key: 'email', addToObj: { moveOut: false } },
     { key: 'password', addToObj: { moveOut: true } },
   ]);
+  const [login] = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [stepLogin, setStepLogin] = useState(STEPS_LOGIN.FIRST);
   const classes = useStyles();
@@ -53,6 +55,8 @@ function LoginBox() {
   }
 
   async function handleFirstStepForm() {
+    setIsLoading(true);
+
     try {
       const { data, msg } = await UserService.checkEmailExists(
         inputs.email.value
@@ -73,14 +77,34 @@ function LoginBox() {
     } catch (errors) {
       handlerFormErrorValidation(errors, setInputs);
     }
+
+    setIsLoading(false);
+  }
+
+  async function handleSecondStepForm() {
+    setIsLoading(true);
+    try {
+      const userToLogin = {
+        email: inputs.email.value,
+        password: inputs.password.value,
+      };
+      const {
+        data: { user },
+      } = await UserService.login(userToLogin);
+      login(user);
+    } catch (errors) {
+      handlerFormErrorValidation(errors, setInputs);
+    }
     setIsLoading(false);
   }
 
   function onClickSendButton() {
-    setIsLoading(true);
-
     if (stepLogin === STEPS_LOGIN.FIRST) {
       handleFirstStepForm();
+    }
+
+    if (stepLogin === STEPS_LOGIN.SECOND) {
+      handleSecondStepForm();
     }
   }
 
@@ -130,11 +154,11 @@ function LoginBox() {
         >
           <TextField
             label="Digite sua senha..."
-            onChange={(value) => onChangeInput(value, 'email')}
+            onChange={(value) => onChangeInput(value, 'password')}
             showLoader={isLoading}
-            error={inputs.email.error}
+            error={inputs.password.error}
             type="password"
-            helperText={inputs.email.helperText}
+            helperText={inputs.password.helperText}
           />
         </div>
       </div>

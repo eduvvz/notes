@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import useStyles from './styles';
@@ -10,7 +11,7 @@ function GridBoxGlow(props) {
   const classes = useStyles({ glowColor: color || accentColor });
 
   return (
-    <Grid className={[classes.box_glow, ...classnames]} {...props}>
+    <Grid className={clsx([classes.box_glow, ...classnames])} {...props}>
       {children}
     </Grid>
   );

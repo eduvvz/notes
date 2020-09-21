@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Lottie from 'lottie-web-react';
 import useStyles from './styles';
-import * as animationData from '../../../../assets/animations/hamburguer-lottie.json';
-import { LOTTIE_PLAY_STATES } from '../../../../utils/animations';
-import { closeSidebar, openSidebar } from '../../../Layout/actions';
+import * as animationData from '../../../../../../assets/animations/hamburguer-lottie.json';
+import { LOTTIE_PLAY_STATES } from '../../../../../../utils/constants/animations';
+import { closeSidebar, openSidebar } from '../../../../actions';
 
 function MenuIcon() {
   const dispatch = useDispatch();

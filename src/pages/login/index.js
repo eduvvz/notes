@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Grid } from '@material-ui/core';
 import Layout from '../../components/Layout';
-import LoginBox from '../../components/LoginBox';
 import useStyles from './styles';
+import LoginBox from '../../components/User/components/LoginBox';
 
 function LoginPage() {
   const classes = useStyles();

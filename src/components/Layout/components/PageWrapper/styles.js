@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { MENU_HEIGHT } from '../../../AppBar/constants';
+import { MENU_HEIGHT } from '../AppBar/constants';
 
 const useStyles = makeStyles((theme) => ({
   page_wrapper: {

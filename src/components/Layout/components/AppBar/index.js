@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Box, Grid, Container } from '@material-ui/core';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
-import Logo from '../UI/Logo';
+import Logo from '../../../UI/Logo';
 import useStyles from './styles';
 
 function AppBar() {

@@ -6,11 +6,11 @@ import { ThemeProvider } from '@material-ui/styles';
 import Head from 'next/head';
 import AppBar from '../AppBar';
 import theme from './theme';
-import { APP_NAME } from '../../constants';
 import { getRandomColor } from '../../utils/colors';
 import { setAccentColor } from './actions';
 import PageWrapper from './components/PageWrapper';
 import useStyles from './styles';
+import { APP_NAME } from '../../utils/constants';
 
 function Layout({ children, title }) {
   const dispatch = useDispatch();
