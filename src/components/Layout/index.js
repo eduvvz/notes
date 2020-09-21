@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { useDispatch } from 'react-redux';
 import { ThemeProvider } from '@material-ui/styles';
 import Head from 'next/head';
-import AppBar from '../AppBar';
+import AppBar from './components/AppBar';
 import theme from './theme';
 import { getRandomColor } from '../../utils/colors';
 import { setAccentColor } from './actions';

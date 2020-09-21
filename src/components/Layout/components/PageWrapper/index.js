@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useStyles from './styles';
-import SideBar from '../../../SideBar';
+import SideBar from '../SideBar';
 
 function PageWrapper({ children }) {
   const classes = useStyles();
