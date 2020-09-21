@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Grid } from '@material-ui/core';
 import Layout from '../../components/Layout';
 import useStyles from './styles';
-import RegisterBox from '../../components/User/RegisterBox';
+import RegisterBox from '../../components/User/components/RegisterBox';
 
 function RegisterPage() {
   const classes = useStyles();

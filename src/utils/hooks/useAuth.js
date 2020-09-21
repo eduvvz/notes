@@ -25,6 +25,21 @@ function useAuth() {
     route.push('/notes');
   }
 
+  function userIsLogged() {
+    const state = store.getState();
+    const { user } = state;
+    const userLocalStorage = {
+      data: JSON.parse(localStorage.getItem(USER_DATA)),
+      token: JSON.parse(localStorage.getItem(USER_TOKEN)),
+    };
+
+    if ((!user.data || !user.token) && !userLocalStorage.token) {
+      return false;
+    }
+
+    return true;
+  }
+
   function checkAuth() {
     const state = store.getState();
     const { user } = state;
@@ -49,7 +64,7 @@ function useAuth() {
     route.push('/login');
   }
 
-  return { login, checkAuth, logout };
+  return { login, checkAuth, logout, userIsLogged };
 }
 
 export default useAuth;
