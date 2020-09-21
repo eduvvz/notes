@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import clsx from 'clsx';
+import Link from 'next/link';
 import { ArrowBack } from '@material-ui/icons';
 import useStyles from './styles';
 import TextField from '../Inputs/TextField';
@@ -9,16 +9,16 @@ import SendButton from '../UI/Buttons/SendButton';
 import UserService from '../../services/UserService';
 import DiscreetButton from '../UI/Buttons/DiscreetButton';
 import { STEPS_LOGIN } from './contants';
+import GridBoxGlow from '../UI/GridBoxGlow';
 
 function LoginBox() {
-  const { accentColor } = useSelector((state) => state.layout.pallete);
   const [inputs, setInputs] = useState({
     email: { value: '', error: false, helperText: '', moveOut: false },
     password: { value: '', error: false, helperText: '', moveOut: true },
   });
   const [isLoading, setIsLoading] = useState(false);
   const [stepLogin, setStepLogin] = useState(STEPS_LOGIN.FIRST);
-  const classes = useStyles({ accentColor });
+  const classes = useStyles();
 
   function changeStage(nextStep) {
     setTimeout(
@@ -95,7 +95,7 @@ function LoginBox() {
   }
 
   return (
-    <Grid sm={12} md={6} item className={classes.login_box}>
+    <GridBoxGlow sm={12} md={6} item>
       <Grid xs={12} className={classes.btn_back_wrapper}>
         {STEPS_LOGIN.SECOND === stepLogin && (
           <DiscreetButton
@@ -137,10 +137,14 @@ function LoginBox() {
         </div>
       </div>
       <Grid container justify="space-between" alignItems="center">
-        <DiscreetButton label="Ainda não tem uma conta?" />
+        <Link href="/register">
+          <a>
+            <DiscreetButton label="Ainda não tem uma conta?" />
+          </a>
+        </Link>
         <SendButton onClick={onClickSendButton} disabled={isLoading} />
       </Grid>
-    </Grid>
+    </GridBoxGlow>
   );
 }
 

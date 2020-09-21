@@ -5,3 +5,11 @@
 .toast-error-body {
   color: white;
 }
+
+.toast-sucess {
+  background-color: #4caf50;
+}
+
+.toast-sucess-body {
+  color: white;
+}

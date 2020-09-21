@@ -1,10 +1,22 @@
 import { toast } from 'react-toastify';
 
+const defaultConfigsToast = {
+  position: 'bottom-right',
+  hideProgressBar: true,
+};
+
 export const showToastError = (msg) => {
   toast(msg, {
-    position: 'bottom-right',
+    ...defaultConfigsToast,
     className: 'toast-error',
     bodyClassName: 'toast-error-body',
-    hideProgressBar: true,
+  });
+};
+
+export const showSucessToast = (msg) => {
+  toast(msg, {
+    ...defaultConfigsToast,
+    className: 'toast-sucess',
+    bodyClassName: 'toast-sucess-body',
   });
 };
