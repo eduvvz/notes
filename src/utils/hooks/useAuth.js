@@ -1,7 +1,12 @@
 import { useRouter } from 'next/router';
-import { USER_DATA, USER_TOKEN } from '../constants/localStarage';
+import { USER_DATA, USER_TOKEN } from '../constants/localStorage';
 import store from '../../store';
-import { setUserData, setUserToken } from '../../components/User/actions';
+import {
+  setUserData,
+  setUserToken,
+  userLogout,
+} from '../../components/User/actions';
+import { showToastError } from '../toast';
 
 function useAuth() {
   const route = useRouter();
@@ -15,14 +20,36 @@ function useAuth() {
 
     localStorage.setItem(USER_DATA, JSON.stringify(newUser));
     localStorage.setItem(USER_TOKEN, JSON.stringify(user.token));
-    store.dispatch(setUserData(user));
+    store.dispatch(setUserData(newUser));
     store.dispatch(setUserToken(user.token));
     route.push('/notes');
   }
 
-  function checkAuth() {}
+  function checkAuth() {
+    const state = store.getState();
+    const { user } = state;
+    const userLocalStorage = {
+      data: JSON.parse(localStorage.getItem(USER_DATA)),
+      token: JSON.parse(localStorage.getItem(USER_TOKEN)),
+    };
 
-  return [login, checkAuth];
+    if ((!user.data || !user.token) && !userLocalStorage.token) {
+      route.push('login');
+      showToastError('Entre na sua conta para ter acesso a essa página.');
+    } else if ((!user.data || !user.token) && userLocalStorage.token) {
+      store.dispatch(setUserToken(userLocalStorage.token));
+      store.dispatch(setUserData(userLocalStorage.data));
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem(USER_DATA);
+    localStorage.removeItem(USER_TOKEN);
+    store.dispatch(userLogout());
+    route.push('/login');
+  }
+
+  return { login, checkAuth, logout };
 }
 
 export default useAuth;

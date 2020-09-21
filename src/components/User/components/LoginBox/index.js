@@ -19,7 +19,7 @@ function LoginBox() {
     { key: 'email', addToObj: { moveOut: false } },
     { key: 'password', addToObj: { moveOut: true } },
   ]);
-  const [login] = useAuth();
+  const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [stepLogin, setStepLogin] = useState(STEPS_LOGIN.FIRST);
   const classes = useStyles();

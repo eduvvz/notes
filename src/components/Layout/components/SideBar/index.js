@@ -19,7 +19,7 @@ function SideBar() {
   const navItems = [
     {
       label: 'Minhas Notas',
-      link: '/my-notes',
+      link: '/notes',
       icon: <SpeakerNotesOutlined className={classes.nav_item_icon} />,
     },
     {

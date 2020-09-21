@@ -1,12 +1,19 @@
+import useAuth from '../utils/hooks/useAuth';
 import { showToastError } from '../utils/toast';
 
 function defaultHandleError({ status, data: { errors } }) {
+  const { logout } = useAuth();
+
   if (status === 422) {
     return errors.map((error) => ({
       key: error.param,
       error: true,
       helperText: error.msg,
     }));
+  }
+
+  if (status === 401) {
+    return logout();
   }
 
   return showToastError('Algo inesperado aconteceu!');

@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-import { SET_USER_DATA, SET_USER_TOKEN } from './constants';
+import { SET_USER_DATA, SET_USER_TOKEN, USER_LOGOUT } from './constants';
 
 const INITIAL_STATE = {
   data: null,
@@ -15,6 +15,10 @@ const reducer = (state = INITIAL_STATE, action) => {
     case SET_USER_TOKEN:
       return update(state, {
         token: { $set: action.payload },
+      });
+    case USER_LOGOUT:
+      return update(state, {
+        $set: INITIAL_STATE,
       });
     default:
       return state;
