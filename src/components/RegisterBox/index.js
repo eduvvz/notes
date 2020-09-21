@@ -8,53 +8,20 @@ import DiscreetButton from '../UI/Buttons/DiscreetButton';
 import GridBoxGlow from '../UI/GridBoxGlow';
 import TextField from '../Inputs/TextField';
 import UserService from '../../services/UserService';
-import { showSucessToast, showToastError } from '../../utils/toast';
+import { showSucessToast } from '../../utils/toast';
+import { handlerFormErrorValidation } from '../../services/handleErros';
+import useFormState from '../../utils/hooks/useFormState';
 
 function RegisterBox() {
   const router = useRouter();
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(false);
-  const [inputs, setInputs] = useState({
-    name: {
-      value: '',
-      error: false,
-      helperText: '',
-    },
-    email: {
-      value: '',
-      error: false,
-      helperText: '',
-    },
-    password: {
-      value: '',
-      error: false,
-      helperText: '',
-    },
-    confirmPassword: {
-      value: '',
-      error: false,
-      helperText: '',
-    },
-  });
-
-  function handleErrorStore({ status, data: { errors } }) {
-    if (status === 422) {
-      errors.forEach((error) => {
-        setInputs((prevState) => ({
-          ...prevState,
-          [error.param]: {
-            ...prevState[error.param],
-            error: true,
-            helperText: error.msg,
-          },
-        }));
-      });
-
-      return;
-    }
-
-    showToastError('Algo inesperado acontenceu!');
-  }
+  const [inputs, setInputs] = useFormState([
+    'name',
+    'email',
+    'password',
+    'confirmPassword',
+  ]);
 
   async function onClickCreateAccount() {
     setIsLoading(true);
@@ -65,11 +32,11 @@ function RegisterBox() {
       confirmPassword: inputs.confirmPassword.value,
     };
     try {
-      await UserService.store(user, true);
+      await UserService.store(user);
       showSucessToast('Sua conta foi criada com sucesso!');
       router.push('/login');
     } catch (error) {
-      handleErrorStore(error);
+      handlerFormErrorValidation(error, setInputs);
     }
     setIsLoading(false);
   }

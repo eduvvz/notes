@@ -10,12 +10,14 @@ import UserService from '../../services/UserService';
 import DiscreetButton from '../UI/Buttons/DiscreetButton';
 import { STEPS_LOGIN } from './contants';
 import GridBoxGlow from '../UI/GridBoxGlow';
+import { handlerFormErrorValidation } from '../../services/handleErros';
+import useFormState from '../../utils/hooks/useFormState';
 
 function LoginBox() {
-  const [inputs, setInputs] = useState({
-    email: { value: '', error: false, helperText: '', moveOut: false },
-    password: { value: '', error: false, helperText: '', moveOut: true },
-  });
+  const [inputs, setInputs] = useFormState([
+    { key: 'email', addToObj: { moveOut: false } },
+    { key: 'password', addToObj: { moveOut: true } },
+  ]);
   const [isLoading, setIsLoading] = useState(false);
   const [stepLogin, setStepLogin] = useState(STEPS_LOGIN.FIRST);
   const classes = useStyles();
@@ -68,10 +70,10 @@ function LoginBox() {
           },
         }));
       }
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
+    } catch (errors) {
+      handlerFormErrorValidation(errors, setInputs);
     }
+    setIsLoading(false);
   }
 
   function onClickSendButton() {
@@ -96,7 +98,7 @@ function LoginBox() {
 
   return (
     <GridBoxGlow sm={12} md={6} item>
-      <Grid xs={12} className={classes.btn_back_wrapper}>
+      <Grid xs={12} item className={classes.btn_back_wrapper}>
         {STEPS_LOGIN.SECOND === stepLogin && (
           <DiscreetButton
             icon={<ArrowBack />}

@@ -11,8 +11,9 @@ const UserService = {
           return resolve(res.data);
         })
         .catch((error) => {
-          reject(error.response);
-          return !dontExecuteDefaultError && defaultHandleError(error.response);
+          return dontExecuteDefaultError
+            ? reject(error.response)
+            : reject(defaultHandleError(error.response));
         });
     });
   },
@@ -24,8 +25,9 @@ const UserService = {
           return resolve(res.data);
         })
         .catch((error) => {
-          reject(error.response);
-          return !dontExecuteDefaultError && defaultHandleError(error.response);
+          return dontExecuteDefaultError
+            ? reject(error.response)
+            : reject(defaultHandleError(error.response));
         });
     });
   },
