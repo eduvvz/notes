@@ -13,6 +13,7 @@ function TextField({
   error,
   helperText,
   type,
+  notShrink,
 }) {
   const { accentColor } = useSelector((state) => state.layout.pallete);
   const classes = useStyles({ accentColor, error });
@@ -33,7 +34,7 @@ function TextField({
       InputLabelProps={{
         className: classes.textFieldLabel,
         focused: false,
-        shrink: true,
+        shrink: !notShrink,
       }}
     />
   );
@@ -46,11 +47,12 @@ TextField.defaultProps = {
 TextField.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   showLoader: PropTypes.bool,
   error: PropTypes.bool,
   helperText: PropTypes.string,
   type: PropTypes.string,
+  notShrink: PropTypes.bool,
 };
 
 export default TextField;
