@@ -21,6 +21,7 @@ const routes = [
     label: 'Faça seu cadastro',
     link: '/register',
     icon: 'exit_to_app_out_outlined',
+    sidebarDontShow: true,
     dontOpenWhenLogged: true,
   },
 ];
