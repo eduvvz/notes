@@ -7,9 +7,9 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     height: '100vh',
     width: '100vw',
-    padding: theme.spacing(6),
     backgroundColor: 'rgba(0, 0, 0, 0.0)',
     transition: '0.3s',
+    padding: theme.spacing(2),
   },
   overlay_show: {
     visibility: 'visible',

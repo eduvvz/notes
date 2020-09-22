@@ -11,11 +11,11 @@ const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SHOW_BOX_NEW_NOTE:
       return update(state, {
-        boxNewNote: { open: { $set: true } },
+        boxNewNote: { show: { $set: true } },
       });
     case HIDE_BOX_NEW_NOTE:
       return update(state, {
-        boxNewNote: { open: { $set: false } },
+        boxNewNote: { show: { $set: false } },
       });
     default:
       return state;

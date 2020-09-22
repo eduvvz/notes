@@ -10,9 +10,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
     padding: theme.spacing(4),
     borderRadius: 20,
+    maxHeight: '100%',
+    overflowY: 'auto',
 
     [theme.breakpoints.down('xs')]: {
-      width: '85%',
+      width: '100%',
     },
     [theme.breakpoints.up('sm')]: {
       width: '60%',
