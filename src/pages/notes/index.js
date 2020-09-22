@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Grid } from '@material-ui/core';
 import Layout from '../../components/Layout';
 import useStyles from './styles';
-import BarNewNote from '../../components/Note/components/BarNewNote';
+import BarNotes from '../../components/Note/components/BarNotes';
 
 function RegisterPage() {
   const classes = useStyles();
@@ -11,7 +11,7 @@ function RegisterPage() {
     <Layout title="Crie sua conta">
       <Grid container className={classes.container}>
         <Container>
-          <BarNewNote />
+          <BarNotes />
         </Container>
       </Grid>
     </Layout>
