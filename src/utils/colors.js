@@ -1,4 +1,4 @@
-import colors from '../assets/styles/colors';
+import colors from './constants/colors';
 
 export function getRandomColor() {
   const randomPosition = Math.floor(Math.random() * colors.length);

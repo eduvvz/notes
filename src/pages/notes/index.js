@@ -3,6 +3,7 @@ import { Container, Grid } from '@material-ui/core';
 import Layout from '../../components/Layout';
 import useStyles from './styles';
 import BarNotes from '../../components/Note/components/BarNotes';
+import BoxNewNote from '../../components/Note/components/BoxNewNote';
 
 function RegisterPage() {
   const classes = useStyles();
@@ -14,6 +15,7 @@ function RegisterPage() {
           <BarNotes />
         </Container>
       </Grid>
+      <BoxNewNote />
     </Layout>
   );
 }

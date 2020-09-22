@@ -36,6 +36,16 @@ const theme = createMuiTheme({
             outlineStyle: 'none',
           },
         },
+        textArea: {
+          backgroundColor: 'inherit',
+          color: 'inherit',
+          border: 'inherit',
+          resize: 'none',
+
+          '&:FOCUS': {
+            outlineStyle: 'none',
+          },
+        },
       },
     },
   },
