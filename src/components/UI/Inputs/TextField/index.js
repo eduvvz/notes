@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { TextField as MUITextField } from '@material-ui/core';
 import useStyles from './styles';
-import Loader from '../../UI/Loader';
+import Loader from '../../Loader';
 
 function TextField({
   label,
