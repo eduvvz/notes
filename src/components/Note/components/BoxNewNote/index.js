@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import OverlayPage from '../../../UI/OverlayPage';
-import TextField from '../../../Inputs/TextField';
+import TextField from '../../../UI/Inputs/TextField';
 import useStyles from './styles';
 import NoteArea from './components/NoteArea';
 import IconButton from '../../../UI/Buttons/IconButton';

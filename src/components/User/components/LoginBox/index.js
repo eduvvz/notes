@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { ArrowBack } from '@material-ui/icons';
 import useStyles from './styles';
-import TextField from '../../../Inputs/TextField';
+import TextField from '../../../UI/Inputs/TextField';
 import SendButton from '../../../UI/Buttons/SendButton';
 import UserService from '../../../../services/UserService';
 import DiscreetButton from '../../../UI/Buttons/DiscreetButton';

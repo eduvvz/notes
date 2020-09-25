@@ -6,7 +6,7 @@ import useStyles from './styles';
 import SendButton from '../../../UI/Buttons/SendButton';
 import DiscreetButton from '../../../UI/Buttons/DiscreetButton';
 import GridBoxGlow from '../../../UI/GridBoxGlow';
-import TextField from '../../../Inputs/TextField';
+import TextField from '../../../UI/Inputs/TextField';
 import UserService from '../../../../services/UserService';
 import { showSucessToast } from '../../../../utils/toast';
 import { handlerFormErrorValidation } from '../../../../services/handleErros';

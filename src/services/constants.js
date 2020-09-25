@@ -6,3 +6,7 @@ export const USERS_DEFAULT = `${END_POINT}${prefixUser}`;
 export const USERS_CHECK_EMAIL_EXIST = (email) =>
   `${USERS_DEFAULT}/checkEmailExists?email=${email}`;
 export const USERS_LOGIN = `${USERS_DEFAULT}/login`;
+
+// NOTES
+const prefixNote = 'notes';
+export const NOTES_DEFAULT = `${END_POINT}/${prefixNote}`;
