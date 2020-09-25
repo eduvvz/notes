@@ -42,6 +42,10 @@ const theme = createMuiTheme({
           border: 'inherit',
           resize: 'none',
 
+          '&::placeholder': {
+            color: 'white',
+          },
+
           '&:FOCUS': {
             outlineStyle: 'none',
           },

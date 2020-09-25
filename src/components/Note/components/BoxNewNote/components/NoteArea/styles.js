@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     padding: theme.spacing(3, 2),
     borderRadius: 10,
-    border: `1px solid ${theme.palette.secondary.light}`,
+    border: `1px solid ${theme.palette.secondary.main}`,
     margin: theme.spacing(4, 0),
     transition: '0.2s',
 
@@ -14,7 +14,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   note_area_on_focus: ({ accentColor }) => ({
-    borderColor: `${accentColor} !important`,
+    border: `1px solid ${accentColor}`,
+
+    '&:HOVER': {
+      borderColor: accentColor,
+    },
   }),
   textarea: {
     width: '100%',

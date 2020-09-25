@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     transition: '0.3s',
     marginBottom: theme.spacing(1),
     cursor: 'pointer',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
 
     '&:HOVER': {
       borderColor: accentColor,

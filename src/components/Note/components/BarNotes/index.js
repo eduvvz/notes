@@ -6,7 +6,7 @@ import { showBoxNewNote } from '../../actions';
 import ActionButton from '../../../UI/Buttons/ActionButton';
 import IconButton from '../../../UI/Buttons/IconButton';
 
-function BarNewNote() {
+function BarNote() {
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -15,7 +15,7 @@ function BarNewNote() {
   }
 
   return (
-    <Grid xs={12} justify="center" alignItems="center" container>
+    <Grid xs={12} justify="center" alignItems="center" container item>
       <Grid
         spacing={3}
         xs={12}
@@ -39,4 +39,4 @@ function BarNewNote() {
   );
 }
 
-export default BarNewNote;
+export default BarNote;

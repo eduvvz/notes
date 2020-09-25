@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import clsx from 'clsx';
 import { Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import OverlayPage from '../../../UI/OverlayPage';
@@ -11,12 +12,14 @@ import { hideBoxNewNote } from '../../actions';
 
 function BoxNewNote() {
   const dispatch = useDispatch();
-  const { boxNewNote } = useSelector((state) => state.notes);
+  const { boxNewNote, newNote } = useSelector((state) => state.notes);
+  const [showBoxNewNote, setShowBoxNewNote] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
-  const classes = useStyles();
+  const classes = useStyles({ newNoteColor: newNote.color });
 
   useEffect(() => {
-    setShowOverlay(boxNewNote.show);
+    setTimeout(() => setShowOverlay(boxNewNote.show), 0);
+    setTimeout(() => setShowBoxNewNote(boxNewNote.show), 300);
   }, [boxNewNote.show]);
 
   function onChangeInputs() {}
@@ -27,7 +30,12 @@ function BoxNewNote() {
 
   return (
     <OverlayPage show={showOverlay}>
-      <div className={classes.box_new_note}>
+      <div
+        className={clsx(
+          classes.box_new_note,
+          showBoxNewNote && classes.show_box_new_note
+        )}
+      >
         <TextField label="Qual o titulo?" onChange={onChangeInputs} />
         <NoteArea />
         <Grid xs={12} justify="space-between" item container>

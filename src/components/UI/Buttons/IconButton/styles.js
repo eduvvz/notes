@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     width: 39,
     height: 39,
     padding: theme.spacing(1, 2),
-    border: `1px solid ${theme.palette.secondary.light}`,
+    border: `1px solid ${theme.palette.secondary.main}`,
     borderRadius: '100%',
     transition: '0.2s',
     display: 'flex',
