@@ -16,12 +16,13 @@ import { showSucessToast } from '../../../../utils/toast';
 
 function BoxNewNote() {
   const dispatch = useDispatch();
-  const { boxNewNote, newNote } = useSelector((state) => state.notes);
+  const { boxNewNote } = useSelector((state) => state.notes);
   const user = useSelector((state) => state.user.data);
   const [isLoading, setIsLoading] = useState(false);
   const [showBoxNewNote, setShowBoxNewNote] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
-  const classes = useStyles({ newNoteColor: newNote.color });
+  const [newNoteColor, setNewNoteColor] = useState(null);
+  const classes = useStyles({ newNoteColor });
   const [inputs, setInputs] = useFormState(['title', 'content']);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ function BoxNewNote() {
     const note = {
       title: inputs.title.value,
       content: inputs.content.value,
-      color: newNote.color,
+      color: newNoteColor,
       userId: user.id,
     };
 
@@ -63,6 +64,10 @@ function BoxNewNote() {
       handlerFormErrorValidation(error, setInputs);
     }
     setIsLoading(false);
+  }
+
+  function onSelectedColor(color) {
+    setNewNoteColor(color);
   }
 
   return (
@@ -80,7 +85,7 @@ function BoxNewNote() {
         <NoteArea onChange={(value) => onChangeInputs(value, 'content')} />
         <Grid xs={12} justify="space-between" item container>
           <Grid xs={2}>
-            <ColorsPicker />
+            <ColorsPicker onSelectedColor={onSelectedColor} />
           </Grid>
           <Grid xs={10} justify="flex-end" item container>
             <div className={classes.wrapper_off_button}>

@@ -35,8 +35,8 @@ function ListMyNotes() {
       {!isLoading && notes.length === 0 && (
         <Typography variant="body1">Você ainda não tem notas ):</Typography>
       )}
-      {notes.map((note) => (
-        <PaperNote title={note.title} content={note.content} />
+      {notes.map(({ title, content, color }) => (
+        <PaperNote title={title} content={content} color={color} />
       ))}
     </Grid>
   );

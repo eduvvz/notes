@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { Paper, Popover } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import useStyles from './styles';
 import IconButton from '../../../../../UI/Buttons/IconButton';
 import colors from '../../../../../../utils/constants/colors';
-import { changeColorNewNote } from '../../../../actions';
 
-function ColorsPicker() {
-  const dispatch = useDispatch();
+function ColorsPicker({ onSelectedColor }) {
   const { accentColor } = useSelector((state) => state.layout.pallete);
-  const { newNote } = useSelector((state) => state.notes);
+  const [colorSelected, setColorSelected] = useState(null);
   const classes = useStyles({ accentColor });
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -24,9 +23,13 @@ function ColorsPicker() {
 
   const open = Boolean(anchorEl);
 
-  function onClickColor(color) {
-    dispatch(changeColorNewNote(newNote.color === color ? null : color));
+  function onClickColor(newColor) {
+    setColorSelected(colorSelected === newColor ? null : newColor);
   }
+
+  useEffect(() => {
+    onSelectedColor(colorSelected);
+  }, [colorSelected]);
 
   return (
     <>
@@ -62,7 +65,7 @@ function ColorsPicker() {
               className={classes.iconColor}
               style={{ backgroundColor: color }}
             >
-              {color === newNote.color && <Close />}
+              {color === colorSelected && <Close />}
             </div>
           ))}
         </Paper>
@@ -70,5 +73,9 @@ function ColorsPicker() {
     </>
   );
 }
+
+ColorsPicker.propTypes = {
+  onSelectedColor: PropTypes.func,
+};
 
 export default ColorsPicker;
