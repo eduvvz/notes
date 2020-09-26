@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
     transform: 'translate(-50%, -50%)',
     boxShadow: `0 0 10px rgba(0, 0, 0, 0.6)`,
     backgroundColor: newNoteColor
-      ? `${hexToRgb(newNoteColor, 0.4)}`
-      : theme.palette.primary.main,
+      ? hexToRgb(newNoteColor, 0.9)
+      : hexToRgb(theme.palette.primary.main, 0.9),
     padding: theme.spacing(4),
     borderRadius: 20,
     maxHeight: '100%',

@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   page: {
     width: '100%',
     height: `calc(100vh - ${MENU_HEIGHT}px)`,
+    overflowY: 'auto',
     backgroundColor: theme.palette.primary.main,
   },
 }));

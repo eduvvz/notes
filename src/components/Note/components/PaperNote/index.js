@@ -1,4 +1,5 @@
 import React from 'react';
+import parse from 'html-react-parser';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import useStyles from './styles';
@@ -8,10 +9,14 @@ function PaperNote({ title, content, color }) {
 
   return (
     <div className={classes.paperNote}>
-      <Typography variant="body1" gutterBottom>
-        {title}
+      {title && (
+        <Typography className={classes.titleNote} variant="body1" gutterBottom>
+          {title}
+        </Typography>
+      )}
+      <Typography variant="body2">
+        {parse(content.replace(/\n/gm, '<br />'))}
       </Typography>
-      <Typography variant="body2">{content}</Typography>
     </div>
   );
 }

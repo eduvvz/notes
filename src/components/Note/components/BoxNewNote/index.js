@@ -9,7 +9,7 @@ import NoteArea from './components/NoteArea';
 import IconButton from '../../../UI/Buttons/IconButton';
 import ColorsPicker from './components/ColorsPicker';
 import NoteService from '../../../../services/NoteService';
-import { hideBoxNewNote } from '../../actions';
+import { hideBoxNewNote, addNewMyNote } from '../../actions';
 import useFormState from '../../../../utils/hooks/useFormState';
 import { handlerFormErrorValidation } from '../../../../services/handleErros';
 import { showSucessToast } from '../../../../utils/toast';
@@ -58,6 +58,7 @@ function BoxNewNote() {
 
     try {
       await NoteService.store(note);
+      dispatch(addNewMyNote(note));
       showSucessToast('Nota criada!');
       dispatch(hideBoxNewNote());
     } catch (error) {

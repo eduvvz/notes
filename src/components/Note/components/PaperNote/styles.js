@@ -3,9 +3,10 @@ import { hexToRgb } from '../../../../utils/colors';
 
 const useStyles = makeStyles((theme) => ({
   paperNote: ({ bgColor }) => ({
+    display: 'inline-block',
+    marginBottom: theme.spacing(2),
     minHeight: 100,
     width: 230,
-    margin: theme.spacing(1),
     backgroundColor: bgColor
       ? `${hexToRgb(bgColor, 0.4)}`
       : theme.palette.primary.main,
@@ -13,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     borderRadius: 10,
   }),
+  titleNote: {
+    marginBottom: theme.spacing(2),
+  },
 }));
 
 export default useStyles;

@@ -5,6 +5,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(6, 0),
   },
+  list_grid: {
+    width: '100%',
+  },
 }));
 
 export default useStyles;
