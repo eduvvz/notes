@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     border: `1px solid ${theme.palette.primary.light}`,
     padding: theme.spacing(2),
     borderRadius: 10,
+    transition: '0.2s',
   }),
   titleNote: {
     marginBottom: theme.spacing(2),

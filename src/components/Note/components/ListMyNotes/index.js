@@ -20,7 +20,7 @@ function ListMyNotes() {
       setIsLoading(true);
 
       const response = await NoteService.getByUser(user.id);
-      dispatch(setMyNotes(response.data));
+      dispatch(setMyNotes(response.data.rows));
 
       setIsLoading(false);
     }
