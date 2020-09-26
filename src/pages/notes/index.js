@@ -5,6 +5,7 @@ import Layout from '../../components/Layout';
 import useStyles from './styles';
 import BarNotes from '../../components/Note/components/BarNotes';
 import BoxNewNote from '../../components/Note/components/BoxNewNote';
+import ListNotes from '../../components/Note/components/ListMyNotes';
 
 function RegisterPage() {
   const { boxNewNote } = useSelector((state) => state.notes);
@@ -15,6 +16,7 @@ function RegisterPage() {
       <Grid container className={classes.container}>
         <Container>
           <BarNotes />
+          <ListNotes />
         </Container>
       </Grid>
       {boxNewNote.show && <BoxNewNote />}

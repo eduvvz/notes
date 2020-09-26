@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  icon_button: ({ accentColor }) => ({
+  icon_button: ({ accentColor, disabled }) => ({
     width: 39,
     height: 39,
     padding: theme.spacing(1, 2),
@@ -13,8 +13,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
 
     '&:HOVER': {
-      borderColor: accentColor,
+      borderColor: disabled ? theme.palette.secondary.main : accentColor,
     },
+  }),
+  icon: ({ disabled }) => ({
+    color: disabled ? theme.palette.primary.light : 'white',
+    fontSize: 20,
   }),
 }));
 

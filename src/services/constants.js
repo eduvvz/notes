@@ -9,4 +9,6 @@ export const USERS_LOGIN = `${USERS_DEFAULT}/login`;
 
 // NOTES
 const prefixNote = 'notes';
-export const NOTES_DEFAULT = `${END_POINT}/${prefixNote}`;
+export const NOTES_DEFAULT = `${END_POINT}${prefixNote}`;
+export const NOTES_GET_BY_USER = (userId) =>
+  `${NOTES_DEFAULT}/byUser?userId=${userId}`;

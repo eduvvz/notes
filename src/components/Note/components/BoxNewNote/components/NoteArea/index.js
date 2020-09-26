@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import useStyles from './styles';
 
-function NoteArea() {
+function NoteArea({ onChange }) {
   const { accentColor } = useSelector((state) => state.layout.pallete);
   const [textAreaOnFocus, setTextAreaOnFocus] = useState(false);
   const classes = useStyles({ accentColor });
@@ -27,6 +28,7 @@ function NoteArea() {
       <TextareaAutosize
         rowsMin={3}
         placeholder="Comece a escrever sua nota..."
+        onChange={(event) => onChange(event.target.value)}
         onFocus={onTextAreaFocus}
         onBlur={onTextAreaBlur}
         className={classes.textarea}
@@ -35,6 +37,8 @@ function NoteArea() {
   );
 }
 
-NoteArea.propTypes = {};
+NoteArea.propTypes = {
+  onChange: PropTypes.func,
+};
 
 export default NoteArea;

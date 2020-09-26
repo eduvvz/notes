@@ -3,7 +3,6 @@ import { showToastError } from '../utils/toast';
 
 function defaultHandleError({ status, data: { errors } }) {
   const { logout } = useAuth();
-
   if (status === 422) {
     return errors.map((error) => ({
       key: error.param,
