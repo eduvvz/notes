@@ -6,9 +6,10 @@ import PaperNote from '../PaperNote';
 import useStyles from './styles';
 import Loader from '../../../UI/Loader';
 import NoteService from '../../../../services/NoteService';
-import { setFolders, setMyNotes } from '../../actions';
+import { removeNote, setFolders, setMyNotes } from '../../actions';
 import FoldersService from '../../../../services/FoldersService';
 import FolderPaper from '../FolderPaper';
+import { NOTE_ID_TRANSFER_DRAG_DROG } from './constants';
 
 function ListMyNotes() {
   const dispatch = useDispatch();
@@ -42,6 +43,22 @@ function ListMyNotes() {
     }
   }, [user]);
 
+  async function onDropNoteInFolder(folderId, ev) {
+    const noteId = ev.dataTransfer.getData(NOTE_ID_TRANSFER_DRAG_DROG);
+
+    const noteInFolder = {
+      noteId,
+      folderId,
+    };
+
+    await NoteService.putInFolder(noteInFolder);
+    dispatch(removeNote(noteId));
+  }
+
+  function onDragNote(noteId, ev) {
+    ev.dataTransfer.setData(NOTE_ID_TRANSFER_DRAG_DROG, noteId);
+  }
+
   function renderListNotes() {
     return (
       <>
@@ -52,7 +69,11 @@ function ListMyNotes() {
             container
           >
             {folders.map(({ id, name }) => (
-              <FolderPaper key={id} idFolder={id} name={name} />
+              <FolderPaper
+                key={id}
+                name={name}
+                onDropDraggable={(ev) => onDropNoteInFolder(id, ev)}
+              />
             ))}
           </Grid>
         )}
@@ -67,6 +88,7 @@ function ListMyNotes() {
                   title={title}
                   content={content}
                   color={color}
+                  onDrag={(ev) => onDragNote(id, ev)}
                 />
               ))}
             </Masonry>

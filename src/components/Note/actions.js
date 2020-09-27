@@ -7,6 +7,7 @@ import {
   SET_FOLDERS,
   HIDE_BOX_NEW_FOLDER,
   SHOW_BOX_NEW_FOLDER,
+  REMOVE_NOTE,
 } from './constants';
 
 export const showBoxNewNote = () => ({
@@ -43,4 +44,9 @@ export const showBoxNewFolder = () => ({
 
 export const hideBoxNewFolder = () => ({
   type: HIDE_BOX_NEW_FOLDER,
+});
+
+export const removeNote = (payload) => ({
+  type: REMOVE_NOTE,
+  payload,
 });

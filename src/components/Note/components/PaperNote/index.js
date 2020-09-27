@@ -4,18 +4,22 @@ import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import useStyles from './styles';
 
-function PaperNote({ title, content, color }) {
+function PaperNote({ title, content, color, onDrag }) {
   const classes = useStyles({ bgColor: color });
 
   return (
-    <div className={classes.paperNote} draggable>
+    <div
+      className={classes.paperNote}
+      draggable
+      onDragStart={(ev) => onDrag(ev)}
+    >
       {title && (
         <Typography className={classes.titleNote} variant="body1" gutterBottom>
           {title}
         </Typography>
       )}
       <Typography variant="body2">
-        {parse(content.replace(/\n/gm, '<br />'))}
+        {content && parse(content.replace(/\n/gm, '<br />'))}
       </Typography>
     </div>
   );
@@ -25,6 +29,7 @@ PaperNote.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
   color: PropTypes.string,
+  onDrag: PropTypes.func,
 };
 
 export default PaperNote;

@@ -8,6 +8,7 @@ import {
   SET_FOLDERS,
   HIDE_BOX_NEW_FOLDER,
   SHOW_BOX_NEW_FOLDER,
+  REMOVE_NOTE,
 } from './constants';
 
 const INITIAL_STATE = {
@@ -54,6 +55,12 @@ const reducer = (state = INITIAL_STATE, action) => {
     case HIDE_BOX_NEW_FOLDER:
       return update(state, {
         boxNewFolder: { show: { $set: false } },
+      });
+    case REMOVE_NOTE:
+      return update(state, {
+        myNotes: {
+          $set: state.myNotes.filter((note) => note.id !== action.payload),
+        },
       });
     default:
       return state;

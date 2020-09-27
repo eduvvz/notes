@@ -36,8 +36,8 @@ function BoxNewFolder() {
     };
 
     try {
-      await FoldersService.store(folder);
-      dispatch(addNewFolder(folder));
+      const response = await FoldersService.store(folder);
+      dispatch(addNewFolder(response.data));
       showSucessToast('Pasta criada!');
       dispatch(hideBoxNewFolder());
     } catch (error) {

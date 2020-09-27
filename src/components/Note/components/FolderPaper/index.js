@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import { Folder as FolderIcon } from '@material-ui/icons';
 import useStyles from './styles';
 
-function FolderPaper({ id, name }) {
-  const classes = useStyles();
+function FolderPaper({ name, onDropDraggable }) {
+  const [isDragOver, setIsDragOver] = useState(false);
+  const classes = useStyles({ isDragOver });
+
+  function onDragOver(ev) {
+    ev.preventDefault();
+    setIsDragOver(true);
+  }
+
+  function onDragLeave(ev) {
+    ev.preventDefault();
+    setIsDragOver(false);
+  }
+
+  function onDrop(ev) {
+    ev.preventDefault();
+    setIsDragOver(false);
+    onDropDraggable(ev);
+  }
 
   return (
-    <div className={classes.folder}>
+    <div
+      className={classes.folder}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDrop={onDrop}
+    >
       <FolderIcon className={classes.folder_icon} />
       <Typography>{name}</Typography>
     </div>
@@ -16,8 +38,8 @@ function FolderPaper({ id, name }) {
 }
 
 FolderPaper.propTypes = {
-  id: PropTypes.string,
   name: PropTypes.string,
+  onDropDraggable: PropTypes.func,
 };
 
 export default FolderPaper;

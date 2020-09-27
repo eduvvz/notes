@@ -57,8 +57,8 @@ function BoxNewNote() {
     };
 
     try {
-      await NoteService.store(note);
-      dispatch(addNewMyNote(note));
+      const response = await NoteService.store(note);
+      dispatch(addNewMyNote(response.data));
       showSucessToast('Nota criada!');
       dispatch(hideBoxNewNote());
     } catch (error) {

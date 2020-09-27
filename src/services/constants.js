@@ -14,6 +14,7 @@ export const NOTES_GET_BY_USER = (userId) =>
   `${NOTES_DEFAULT}/byUser?userId=${userId}`;
 export const NOTES_GET_BY_USER_AND_WITHOUT_FOLDER = (userId) =>
   `${END_POINT}${prefixNote}/getByUserAndWithoutFolder?userId=${userId}`;
+export const NOTES_PUT_IN_FOLDER = `${NOTES_DEFAULT}/putInFolder`;
 
 // FOLDERS
 const prefixFolder = 'folders';
