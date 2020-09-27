@@ -42,26 +42,36 @@ function ListMyNotes() {
     }
   }, [user]);
 
-  function renderLists() {
+  function renderListNotes() {
     return (
       <>
-        <Grid className={classes.list_folder_wrapper} container>
-          {folders.map(({ id, name }) => (
-            <FolderPaper key={id} idFolder={id} name={name} />
-          ))}
-        </Grid>
-        <Grid container>
-          <Masonry columnsCount={5}>
-            {myNotes.map(({ id, title, content, color }) => (
-              <PaperNote
-                key={id}
-                title={title}
-                content={content}
-                color={color}
-              />
+        {!isLoading && (
+          <Grid
+            className={classes.list_folder_wrapper}
+            justify="center"
+            container
+          >
+            {folders.map(({ id, name }) => (
+              <FolderPaper key={id} idFolder={id} name={name} />
             ))}
-          </Masonry>
-        </Grid>
+          </Grid>
+        )}
+        {!isLoading && myNotes.length === 0 ? (
+          <Typography variant="body1">Você ainda não tem notas ):</Typography>
+        ) : (
+          <Grid container>
+            <Masonry columnsCount={5}>
+              {myNotes.map(({ id, title, content, color }) => (
+                <PaperNote
+                  key={id}
+                  title={title}
+                  content={content}
+                  color={color}
+                />
+              ))}
+            </Masonry>
+          </Grid>
+        )}
       </>
     );
   }
@@ -74,10 +84,7 @@ function ListMyNotes() {
       container
     >
       {isLoading && <Loader />}
-      {!isLoading && myNotes.length === 0 && (
-        <Typography variant="body1">Você ainda não tem notas ):</Typography>
-      )}
-      {!isLoading && myNotes.length > 0 && renderLists()}
+      {renderListNotes()}
     </Grid>
   );
 }
