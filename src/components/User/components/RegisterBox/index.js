@@ -54,7 +54,7 @@ function RegisterBox() {
   }
 
   return (
-    <GridBoxGlow sm={12} md={6} item>
+    <GridBoxGlow classnames={[classes.container]} sm={12} md={6} item>
       <Grid
         xs={12}
         className={classes.btn_back_wrapper}

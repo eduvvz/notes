@@ -45,7 +45,6 @@ function SideBar() {
     <div className={classes.sidebar_wrapper}>
       {routes
         .filter((route) => !route.sidebarDontShow)
-        .filter((route) => route.dontOpenWhenLogged && !userIsLogged())
         .map((route) => (
           <div className={classes.nav_item} key={route.label}>
             <Icon className={classes.nav_item_icon}>{route.icon}</Icon>

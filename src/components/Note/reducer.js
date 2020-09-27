@@ -4,6 +4,8 @@ import {
   HIDE_BOX_NEW_NOTE,
   SET_MY_NOTES,
   ADD_NEW_MY_NOTE,
+  ADD_NEW_FOLDER,
+  SET_FOLDERS,
 } from './constants';
 
 const INITIAL_STATE = {
@@ -11,6 +13,7 @@ const INITIAL_STATE = {
     show: false,
   },
   myNotes: [],
+  folders: [],
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -30,6 +33,14 @@ const reducer = (state = INITIAL_STATE, action) => {
     case ADD_NEW_MY_NOTE:
       return update(state, {
         myNotes: { $set: [action.payload, ...state.myNotes] },
+      });
+    case SET_FOLDERS:
+      return update(state, {
+        folders: { $set: action.payload },
+      });
+    case ADD_NEW_FOLDER:
+      return update(state, {
+        folders: { $set: [action.payload, ...state.myNotes] },
       });
     default:
       return state;

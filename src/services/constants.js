@@ -12,3 +12,9 @@ const prefixNote = 'notes';
 export const NOTES_DEFAULT = `${END_POINT}${prefixNote}`;
 export const NOTES_GET_BY_USER = (userId) =>
   `${NOTES_DEFAULT}/byUser?userId=${userId}`;
+
+// FOLDERS
+const prefixFolder = 'folders';
+export const FOLDERS_DEFAULT = `${END_POINT}${prefixFolder}`;
+export const FOLDERS_GET_BY_USER = (userId) =>
+  `${END_POINT}${prefixFolder}/byUser?userId=${userId}`;

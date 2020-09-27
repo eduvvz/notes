@@ -6,35 +6,63 @@ import PaperNote from '../PaperNote';
 import useStyles from './styles';
 import Loader from '../../../UI/Loader';
 import NoteService from '../../../../services/NoteService';
-import { setMyNotes } from '../../actions';
+import { setFolders, setMyNotes } from '../../actions';
+import FoldersService from '../../../../services/FoldersService';
+import FolderPaper from '../FolderPaper';
 
 function ListMyNotes() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.data);
-  const { myNotes } = useSelector((state) => state.notes);
+  const { myNotes, folders } = useSelector((state) => state.notes);
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function getNotesByUser() {
-      setIsLoading(true);
-
       const response = await NoteService.getByUser(user.id);
       dispatch(setMyNotes(response.data.rows));
+    }
+
+    async function getFolderByUser() {
+      const response = await FoldersService.getByUser(user.id);
+      dispatch(setFolders(response.data.rows));
+    }
+
+    async function getItems() {
+      setIsLoading(true);
+
+      await getNotesByUser();
+      await getFolderByUser();
 
       setIsLoading(false);
     }
 
-    if (user?.id) getNotesByUser();
+    if (user?.id) {
+      getItems();
+    }
   }, [user]);
 
   function renderList() {
     return (
-      <Masonry columnsCount={5} className={classes.list_grid}>
-        {myNotes.map(({ title, content, color }) => (
-          <PaperNote title={title} content={content} color={color} />
-        ))}
-      </Masonry>
+      <>
+        <Grid className={classes.list_folder_wrapper} container>
+          {folders.map(({ id, name }) => (
+            <FolderPaper key={id} idFolder={id} name={name} />
+          ))}
+        </Grid>
+        <Grid container>
+          <Masonry columnsCount={5}>
+            {myNotes.map(({ id, title, content, color }) => (
+              <PaperNote
+                key={id}
+                title={title}
+                content={content}
+                color={color}
+              />
+            ))}
+          </Masonry>
+        </Grid>
+      </>
     );
   }
 
@@ -49,7 +77,7 @@ function ListMyNotes() {
       {!isLoading && myNotes.length === 0 && (
         <Typography variant="body1">Você ainda não tem notas ):</Typography>
       )}
-      {myNotes.length > 0 && renderList()}
+      {!isLoading && myNotes.length > 0 && renderList()}
     </Grid>
   );
 }
