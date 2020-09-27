@@ -18,8 +18,8 @@ function ListMyNotes() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    async function getNotesByUser() {
-      const response = await NoteService.getByUser(user.id);
+    async function getNotesByUserAndWithoutFolder() {
+      const response = await NoteService.getByUserAndWithoutFolder(user.id);
       dispatch(setMyNotes(response.data.rows));
     }
 
@@ -31,7 +31,7 @@ function ListMyNotes() {
     async function getItems() {
       setIsLoading(true);
 
-      await getNotesByUser();
+      await getNotesByUserAndWithoutFolder();
       await getFolderByUser();
 
       setIsLoading(false);
@@ -42,7 +42,7 @@ function ListMyNotes() {
     }
   }, [user]);
 
-  function renderList() {
+  function renderLists() {
     return (
       <>
         <Grid className={classes.list_folder_wrapper} container>
@@ -77,7 +77,7 @@ function ListMyNotes() {
       {!isLoading && myNotes.length === 0 && (
         <Typography variant="body1">Você ainda não tem notas ):</Typography>
       )}
-      {!isLoading && myNotes.length > 0 && renderList()}
+      {!isLoading && myNotes.length > 0 && renderLists()}
     </Grid>
   );
 }

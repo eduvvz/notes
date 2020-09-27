@@ -8,7 +8,7 @@ function PaperNote({ title, content, color }) {
   const classes = useStyles({ bgColor: color });
 
   return (
-    <div className={classes.paperNote}>
+    <div className={classes.paperNote} draggable>
       {title && (
         <Typography className={classes.titleNote} variant="body1" gutterBottom>
           {title}
