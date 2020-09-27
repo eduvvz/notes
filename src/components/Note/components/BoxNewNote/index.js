@@ -71,8 +71,14 @@ function BoxNewNote() {
     setNewNoteColor(color);
   }
 
+  function onClickAwayOverlay() {
+    if (boxNewNote.show) {
+      dispatch(hideBoxNewNote());
+    }
+  }
+
   return (
-    <OverlayPage show={showOverlay}>
+    <OverlayPage show={showOverlay} onClickAway={onClickAwayOverlay}>
       <div
         className={clsx(
           classes.box_new_note,
@@ -85,7 +91,7 @@ function BoxNewNote() {
         />
         <NoteArea onChange={(value) => onChangeInputs(value, 'content')} />
         <Grid xs={12} justify="space-between" item container>
-          <Grid xs={2}>
+          <Grid xs={2} item>
             <ColorsPicker onSelectedColor={onSelectedColor} />
           </Grid>
           <Grid xs={10} justify="flex-end" item container>

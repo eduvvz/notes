@@ -1,20 +1,14 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { ClickAwayListener } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import useStyles from './styles';
-import { hideBoxNewNote } from '../../Note/actions';
 
-function OverlayPage({ children, show }) {
-  const { boxNewNote } = useSelector((state) => state.notes);
-  const dispatch = useDispatch();
+function OverlayPage({ children, show, onClickAway }) {
   const classes = useStyles();
 
   function onClickAwayWrapper() {
-    if (boxNewNote.show) {
-      dispatch(hideBoxNewNote());
-    }
+    onClickAway();
   }
 
   return (
@@ -31,6 +25,7 @@ function OverlayPage({ children, show }) {
 OverlayPage.propTypes = {
   children: PropTypes.node,
   show: PropTypes.bool,
+  onClickAway: PropTypes.func,
 };
 
 export default OverlayPage;

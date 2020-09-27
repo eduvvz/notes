@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     transition: '0.3s',
     cursor: 'pointer',
+    margin: theme.spacing(1),
 
     '&:HOVER': {
       backgroundColor: theme.palette.primary.light,

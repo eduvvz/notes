@@ -6,9 +6,10 @@ import useStyles from './styles';
 import BarNotes from '../../components/Note/components/BarNotes';
 import BoxNewNote from '../../components/Note/components/BoxNewNote';
 import ListNotes from '../../components/Note/components/ListMyNotes';
+import BoxNewFolder from '../../components/Note/components/BoxNewFoder';
 
 function RegisterPage() {
-  const { boxNewNote } = useSelector((state) => state.notes);
+  const { boxNewNote, boxNewFolder } = useSelector((state) => state.notes);
   const classes = useStyles();
 
   return (
@@ -20,6 +21,7 @@ function RegisterPage() {
         </Container>
       </Grid>
       {boxNewNote.show && <BoxNewNote />}
+      {boxNewFolder.show && <BoxNewFolder />}
     </Layout>
   );
 }

@@ -5,6 +5,8 @@ import {
   ADD_NEW_MY_NOTE,
   ADD_NEW_FOLDER,
   SET_FOLDERS,
+  HIDE_BOX_NEW_FOLDER,
+  SHOW_BOX_NEW_FOLDER,
 } from './constants';
 
 export const showBoxNewNote = () => ({
@@ -33,4 +35,12 @@ export const setFolders = (payload) => ({
 export const addNewFolder = (payload) => ({
   type: ADD_NEW_FOLDER,
   payload,
+});
+
+export const showBoxNewFolder = () => ({
+  type: SHOW_BOX_NEW_FOLDER,
+});
+
+export const hideBoxNewFolder = () => ({
+  type: HIDE_BOX_NEW_FOLDER,
 });
