@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 import { Folder as FolderIcon } from '@material-ui/icons';
 import useStyles from './styles';
 
-function FolderPaper({ name, onDropDraggable }) {
+function FolderPaper({ name, onDropDraggable, onClick }) {
   const [isDragOver, setIsDragOver] = useState(false);
   const classes = useStyles({ isDragOver });
 
@@ -30,6 +30,7 @@ function FolderPaper({ name, onDropDraggable }) {
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
+      onClick={onClick}
     >
       <FolderIcon className={classes.folder_icon} />
       <Typography>{name}</Typography>
@@ -40,6 +41,7 @@ function FolderPaper({ name, onDropDraggable }) {
 FolderPaper.propTypes = {
   name: PropTypes.string,
   onDropDraggable: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 export default FolderPaper;

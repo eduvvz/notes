@@ -23,11 +23,11 @@ function SideBar() {
     const handleRouteChange = (route) => {
       const currentRoute = routes.find((nav) => nav.link === route);
 
-      if (currentRoute.isAuth) {
+      if (currentRoute?.isAuth) {
         checkAuth();
       }
 
-      if (currentRoute.dontOpenWhenLogged && userIsLogged()) {
+      if (currentRoute?.dontOpenWhenLogged && userIsLogged()) {
         router.push('/notes');
       }
 
