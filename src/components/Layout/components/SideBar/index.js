@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import Icon from '@material-ui/core/Icon';
@@ -15,25 +15,17 @@ function SideBar() {
     sidebar,
     pallete: { accentColor },
   } = useSelector((state) => state.layout);
+  const [getUserIsLogged, setGetUserIsLogged] = useState(false);
   const classes = useStyles({ isOpen: sidebar.open, accentColor });
   const router = useRouter();
-  const { checkAuth, userIsLogged } = useAuth();
+  const { userIsLogged } = useAuth();
 
   useEffect(() => {
-    const handleRouteChange = (route) => {
-      const currentRoute = routes.find((nav) => nav.link === route);
-
-      if (currentRoute?.isAuth) {
-        checkAuth();
-      }
-
-      if (currentRoute?.dontOpenWhenLogged && userIsLogged()) {
-        router.push('/notes');
-      }
-
+    const handleRouteChange = () => {
       dispatch(closeSidebar());
     };
 
+    setGetUserIsLogged(userIsLogged());
     router.events.on('routeChangeComplete', handleRouteChange);
 
     return () => {
@@ -42,9 +34,9 @@ function SideBar() {
   }, []);
 
   return (
-    <div className={classes.sidebar_wrapper}>
+    <nav className={classes.sidebar_wrapper}>
       {routes
-        .filter((route) => !route.sidebarDontShow)
+        .filter((route) => !(getUserIsLogged && route.dontShowWhenLogged))
         .map((route) => (
           <div className={classes.nav_item} key={route.label}>
             <Icon className={classes.nav_item_icon}>{route.icon}</Icon>
@@ -59,7 +51,7 @@ function SideBar() {
             </Link>
           </div>
         ))}
-    </div>
+    </nav>
   );
 }
 
