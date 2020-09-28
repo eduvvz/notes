@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import NoteService from '../../../../services/NoteService';
 import { setMyNotes } from '../../actions';
 import ListPaper from '../ListNotes';
+import Loader from '../../../UI/Loader';
 
 function FolderItems({ folderId, folderName = '' }) {
   const dispatch = useDispatch();
@@ -27,10 +28,14 @@ function FolderItems({ folderId, folderName = '' }) {
   }, [folderId]);
 
   return (
-    <Grid container>
-      <Grid justify="center" container>
+    <Grid
+      justify={isLoading || myNotes.length === 0 ? 'center' : 'flex-start'}
+      container
+    >
+      <Grid container justify="center">
         <Typography gutterBottom>{folderName}</Typography>
       </Grid>
+      {isLoading && <Loader />}
       {!isLoading && myNotes.length === 0 ? (
         <Typography variant="body1">
           Você ainda não tem notas nesta pasta ):

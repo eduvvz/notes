@@ -21,8 +21,6 @@ function ColorsPicker({ onSelectedColor }) {
     setAnchorEl(null);
   };
 
-  const open = Boolean(anchorEl);
-
   function onClickColor(newColor) {
     setColorSelected(colorSelected === newColor ? null : newColor);
   }
@@ -39,12 +37,12 @@ function ColorsPicker({ onSelectedColor }) {
         onClick={handlePopoverOpen}
       />
       <Popover
-        id="mouse-over-popover"
+        id="colors-popover"
         className={classes.popover}
         classes={{
           paper: classes.paper,
         }}
-        open={open}
+        open={Boolean(anchorEl)}
         anchorEl={anchorEl}
         anchorOrigin={{
           vertical: 'bottom',

@@ -2,8 +2,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { hexToRgb } from '../../../../utils/colors';
 
 const useStyles = makeStyles((theme) => ({
-  paperNote: ({ bgColor }) => ({
+  paper_note: ({ bgColor }) => ({
     display: 'inline-block',
+    position: 'relative',
     marginBottom: theme.spacing(2),
     minHeight: 100,
     width: 230,
@@ -17,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
   }),
   titleNote: {
     marginBottom: theme.spacing(2),
+    pointerEvents: 'none',
+  },
+  contentNote: {
+    pointerEvents: 'none',
   },
 }));
 
