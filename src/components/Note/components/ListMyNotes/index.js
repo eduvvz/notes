@@ -12,26 +12,24 @@ function ListMyNotes() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.data);
   const { myNotes } = useSelector((state) => state.notes);
-  const classes = useStyles();
   const [isLoading, setIsLoading] = useState(false);
+  const classes = useStyles();
 
   useEffect(() => {
     async function getNotesByUserAndWithoutFolder() {
-      const response = await NoteService.getByUserAndWithoutFolder(user.id);
-      dispatch(setMyNotes(response.data.rows));
-    }
-
-    async function getItems() {
       setIsLoading(true);
 
-      await getNotesByUserAndWithoutFolder();
+      const response = await NoteService.getByUserAndWithoutFolder(user.id);
+      dispatch(setMyNotes(response.data.rows));
 
       setIsLoading(false);
     }
 
     if (user?.id) {
-      getItems();
+      getNotesByUserAndWithoutFolder();
     }
+
+    return () => dispatch(setMyNotes([]));
   }, [user]);
 
   function renderListNotes() {
@@ -39,7 +37,9 @@ function ListMyNotes() {
       <>
         {!isLoading && <ListMyFolders />}
         {!isLoading && myNotes.length === 0 ? (
-          <Typography variant="body1">Você ainda não tem notas ):</Typography>
+          <Typography variant="body1">
+            Você ainda não tem notas na sua área de serviço ):
+          </Typography>
         ) : (
           <ListPaper notes={myNotes} />
         )}

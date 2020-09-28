@@ -5,7 +5,7 @@ import { Grid } from '@material-ui/core';
 import PaperNote from '../PaperNote';
 import { NOTE_ID_TRANSFER_DRAG_DROG } from '../ListMyNotes/constants';
 
-function ListPaper({ notes }) {
+function ListPaper({ notes = [] }) {
   function onDragNote(noteId, ev) {
     ev.dataTransfer.setData(NOTE_ID_TRANSFER_DRAG_DROG, noteId);
   }

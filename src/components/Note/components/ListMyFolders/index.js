@@ -31,8 +31,8 @@ function ListMyFolders() {
     }
   }, [user]);
 
-  function onClickFolder(folderId) {
-    router.push(`/folder/${folderId}`);
+  function onClickFolder(folderName, folderId) {
+    router.push(`/folder/${folderName}/${folderId}`);
   }
 
   async function onDropNoteInFolder(folderId, ev) {
@@ -54,7 +54,7 @@ function ListMyFolders() {
           key={id}
           name={name}
           onDropDraggable={(ev) => onDropNoteInFolder(id, ev)}
-          onClick={() => onClickFolder(id)}
+          onClick={() => onClickFolder(name, id)}
         />
       ))}
     </Grid>

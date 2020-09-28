@@ -11,6 +11,9 @@ const useStyles = makeStyles(() => ({
   btn_menu_wrapper: {
     width: 80,
   },
+  icon_back_btn: {
+    cursor: 'pointer',
+  },
 }));
 
 export default useStyles;
