@@ -17,7 +17,6 @@ function DeletedNotes() {
       setIsLoading(true);
 
       const response = await NoteService.getDeletedNotesByUser(user.id);
-      console.log(response);
       dispatch(setMyNotes(response.data.rows));
 
       setIsLoading(false);

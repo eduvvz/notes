@@ -16,6 +16,7 @@ function ListPaper({ notes = [], isDeletedList }) {
         {notes.map(({ id, title, content, color }) => (
           <PaperNote
             key={id}
+            id={id}
             title={title}
             content={content}
             color={color}
