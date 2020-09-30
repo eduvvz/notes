@@ -23,6 +23,7 @@ export const NOTES_DELETE_BY_ID = (noteId) =>
   `${NOTES_DEFAULT}?noteId=${noteId}`;
 export const NOTES_DELETE_PERMANENTLY_BY_ID = (noteId) =>
   `${NOTES_DEFAULT}/permanently?noteId=${noteId}`;
+export const NOTES_RESTORE = `${NOTES_DEFAULT}/restore`;
 
 // FOLDERS
 const prefixFolder = 'folders';

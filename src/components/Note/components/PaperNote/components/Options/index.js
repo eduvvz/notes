@@ -15,6 +15,7 @@ import useStyles from './styles';
 function Options({
   onClickDelete,
   onClickDeletePermanently,
+  onClickRestore,
   show,
   noteIsDeleted,
 }) {
@@ -30,7 +31,10 @@ function Options({
       {noteIsDeleted ? (
         <>
           <Tooltip title="Restaurar...">
-            <RestoreIcon className={classes.options_icon} />
+            <RestoreIcon
+              onClick={onClickRestore}
+              className={classes.options_icon}
+            />
           </Tooltip>
         </>
       ) : (
@@ -64,6 +68,7 @@ function Options({
 Options.propTypes = {
   onClickDelete: PropTypes.func,
   onClickDeletePermanently: PropTypes.func,
+  onClickRestore: PropTypes.func,
   show: PropTypes.bool,
   noteIsDeleted: PropTypes.bool,
 };

@@ -28,10 +28,26 @@ function PaperNote({ id, title, content, color, onDrag, noteIsDeleted }) {
     showSucessToast(response.msg);
   }
 
+  async function onClickRestoreNote() {
+    const note = {
+      noteId: id,
+    };
+
+    const response = await NoteService.restore(note);
+    dispatch(removeNote(response.data.id));
+
+    showSucessToast(response.msg);
+  }
+
+  function onDragStart(ev) {
+    setIsHovered(false);
+    onDrag(ev);
+  }
+
   return (
     <div
       className={classes.paper_note}
-      onDragStart={(ev) => onDrag(ev)}
+      onDragStart={onDragStart}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       draggable
@@ -39,6 +55,7 @@ function PaperNote({ id, title, content, color, onDrag, noteIsDeleted }) {
       <Options
         onClickDelete={onClickDeleteNote}
         onClickDeletePermanently={onClickDeletePermanentlyNote}
+        onClickRestore={onClickRestoreNote}
         show={isHovered}
         noteIsDeleted={noteIsDeleted}
       />
