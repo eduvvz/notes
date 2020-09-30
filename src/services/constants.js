@@ -21,6 +21,8 @@ export const NOTES_GET_DELETED_BY_USER = (userId) =>
   `${NOTES_DEFAULT}/getDeleted?userId=${userId}`;
 export const NOTES_DELETE_BY_ID = (noteId) =>
   `${NOTES_DEFAULT}?noteId=${noteId}`;
+export const NOTES_DELETE_PERMANENTLY_BY_ID = (noteId) =>
+  `${NOTES_DEFAULT}/permanently?noteId=${noteId}`;
 
 // FOLDERS
 const prefixFolder = 'folders';

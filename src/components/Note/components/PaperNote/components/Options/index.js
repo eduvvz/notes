@@ -12,10 +12,13 @@ import {
 import { Tooltip } from '@material-ui/core';
 import useStyles from './styles';
 
-function Options({ onClickDelete, show, noteIsDeleted }) {
+function Options({
+  onClickDelete,
+  onClickDeletePermanently,
+  show,
+  noteIsDeleted,
+}) {
   const classes = useStyles();
-
-  function onClickPermanentlyDeleteNote() {}
 
   return (
     <div
@@ -50,7 +53,7 @@ function Options({ onClickDelete, show, noteIsDeleted }) {
         title={noteIsDeleted ? `Deletar permanentemente...` : 'Deletar...'}
       >
         <DeleteIcon
-          onClick={noteIsDeleted ? onClickPermanentlyDeleteNote : onClickDelete}
+          onClick={noteIsDeleted ? onClickDeletePermanently : onClickDelete}
           className={classes.options_icon}
         />
       </Tooltip>
@@ -59,7 +62,8 @@ function Options({ onClickDelete, show, noteIsDeleted }) {
 }
 
 Options.propTypes = {
-  onClickDelete: PropTypes.string,
+  onClickDelete: PropTypes.func,
+  onClickDeletePermanently: PropTypes.func,
   show: PropTypes.bool,
   noteIsDeleted: PropTypes.bool,
 };

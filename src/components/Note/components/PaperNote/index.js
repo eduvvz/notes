@@ -18,7 +18,14 @@ function PaperNote({ id, title, content, color, onDrag, noteIsDeleted }) {
     const response = await NoteService.deleteNote(id);
     dispatch(removeNote(response.data.id));
 
-    showSucessToast(response.data.msg);
+    showSucessToast(response.msg);
+  }
+
+  async function onClickDeletePermanentlyNote() {
+    const response = await NoteService.deletePermanentlyNote(id);
+    dispatch(removeNote(response.data));
+
+    showSucessToast(response.msg);
   }
 
   return (
@@ -31,6 +38,7 @@ function PaperNote({ id, title, content, color, onDrag, noteIsDeleted }) {
     >
       <Options
         onClickDelete={onClickDeleteNote}
+        onClickDeletePermanently={onClickDeletePermanentlyNote}
         show={isHovered}
         noteIsDeleted={noteIsDeleted}
       />

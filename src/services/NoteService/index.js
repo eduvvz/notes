@@ -7,6 +7,7 @@ import {
   NOTES_PUT_IN_FOLDER,
   NOTES_GET_DELETED_BY_USER,
   NOTES_DELETE_BY_ID,
+  NOTES_DELETE_PERMANENTLY_BY_ID,
 } from '../constants';
 import defaultHandleError from '../handleErros';
 
@@ -105,6 +106,21 @@ const NoteService = {
     return new Promise((resolve, reject) => {
       axios
         .delete(NOTES_DELETE_BY_ID(noteId))
+        .then((res) => {
+          return resolve(res.data);
+        })
+        .catch((error) => {
+          return dontExecuteDefaultError
+            ? reject(error.response)
+            : reject(defaultHandleError(error.response));
+        });
+    });
+  },
+
+  deletePermanentlyNote: (noteId, dontExecuteDefaultError) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .delete(NOTES_DELETE_PERMANENTLY_BY_ID(noteId))
         .then((res) => {
           return resolve(res.data);
         })
