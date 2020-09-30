@@ -51,7 +51,6 @@ function BarNote() {
             iconName="create_new_folder"
             tooltip="Criar nova pasta"
           />
-          <IconButton iconName="archive" tooltip="Ver arquivados" />
           <IconButton
             onClick={onClickDeletedNotes}
             iconName="delete"

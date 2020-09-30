@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import {
   Edit as EditIcon,
   Visibility as VisibilityIcon,
-  OpenInBrowser as OpenInBrowserIcon,
-  Archive as ArchiveIcon,
   Delete as DeleteIcon,
   Restore as RestoreIcon,
 } from '@material-ui/icons';
@@ -44,12 +42,6 @@ function Options({
           </Tooltip>
           <Tooltip title="Ver...">
             <VisibilityIcon className={classes.options_icon} />
-          </Tooltip>
-          <Tooltip title="Mover para outro lugar...">
-            <OpenInBrowserIcon className={classes.options_icon} />
-          </Tooltip>
-          <Tooltip title="Arquivar...">
-            <ArchiveIcon className={classes.options_icon} />
           </Tooltip>
         </>
       )}
