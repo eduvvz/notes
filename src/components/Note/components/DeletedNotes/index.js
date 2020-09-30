@@ -1,55 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Grid, Typography } from '@material-ui/core';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import NoteService from '../../../../services/NoteService';
 import { setMyNotes } from '../../actions';
-import ListNotes from '../ListNotes';
 import Loader from '../../../UI/Loader';
+import ListNotes from '../ListNotes';
 
-function FolderItems({ folderId, folderName = '' }) {
+function DeletedNotes() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.data);
   const { myNotes } = useSelector((state) => state.notes);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function getAllNotesInFolder() {
+    async function getDeletedNotes() {
       setIsLoading(true);
 
-      const response = await NoteService.getAllNotesInFolder(folderId);
-      dispatch(setMyNotes(response.data));
+      const response = await NoteService.getDeletedNotesByUser(user.id);
+      console.log(response);
+      dispatch(setMyNotes(response.data.rows));
 
       setIsLoading(false);
     }
 
-    getAllNotesInFolder();
+    if (user?.id) {
+      getDeletedNotes();
+    }
 
     return () => dispatch(setMyNotes([]));
-  }, [folderId]);
+  }, [user.id]);
 
   return (
     <Grid
       justify={isLoading || myNotes.length === 0 ? 'center' : 'flex-start'}
       container
     >
-      <Grid container justify="center">
-        <Typography gutterBottom>{folderName}</Typography>
-      </Grid>
       {isLoading && <Loader />}
       {!isLoading && myNotes.length === 0 ? (
         <Typography variant="body1">
-          Você ainda não tem notas nesta pasta ):
+          Você ainda não tem notas deletadas.
         </Typography>
       ) : (
-        <ListNotes notes={myNotes} />
+        <ListNotes notes={myNotes} isDeletedList />
       )}
     </Grid>
   );
 }
 
-FolderItems.propTypes = {
-  folderId: PropTypes.string,
-  folderName: PropTypes.string,
-};
-
-export default FolderItems;
+export default DeletedNotes;

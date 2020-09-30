@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import useStyles from './styles';
 import { showBoxNewFolder, showBoxNewNote } from '../../actions';
 import ActionButton from '../../../UI/Buttons/ActionButton';
@@ -9,6 +10,7 @@ import IconButton from '../../../UI/Buttons/IconButton';
 function BarNote() {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const router = useRouter();
 
   function onClickNewNote() {
     dispatch(showBoxNewNote());
@@ -16,6 +18,10 @@ function BarNote() {
 
   function onClickNewFolder() {
     dispatch(showBoxNewFolder());
+  }
+
+  function onClickDeletedNotes() {
+    router.push('deleted-notes');
   }
 
   return (
@@ -46,7 +52,11 @@ function BarNote() {
             tooltip="Criar nova pasta"
           />
           <IconButton iconName="archive" tooltip="Ver arquivados" />
-          <IconButton iconName="delete" tooltip="Ver deletados" />
+          <IconButton
+            onClick={onClickDeletedNotes}
+            iconName="delete"
+            tooltip="Ver deletados"
+          />
         </Grid>
       </Grid>
     </Grid>

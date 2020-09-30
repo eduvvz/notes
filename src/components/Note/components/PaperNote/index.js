@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 import useStyles from './styles';
 import Options from './components/Options';
 
-function PaperNote({ title, content, color, onDrag }) {
+function PaperNote({ title, content, color, onDrag, noteIsDeleted }) {
   const classes = useStyles({ bgColor: color });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -17,7 +17,7 @@ function PaperNote({ title, content, color, onDrag }) {
       onMouseLeave={() => setIsHovered(false)}
       draggable
     >
-      <Options show={isHovered} />
+      <Options show={isHovered} noteIsDeleted={noteIsDeleted} />
       {title && (
         <Typography className={classes.titleNote} variant="body1" gutterBottom>
           {title}
@@ -35,6 +35,7 @@ PaperNote.propTypes = {
   content: PropTypes.string,
   color: PropTypes.string,
   onDrag: PropTypes.func,
+  noteIsDeleted: PropTypes.bool,
 };
 
 export default PaperNote;

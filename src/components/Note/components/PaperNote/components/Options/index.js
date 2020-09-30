@@ -7,12 +7,17 @@ import {
   OpenInBrowser as OpenInBrowserIcon,
   Archive as ArchiveIcon,
   Delete as DeleteIcon,
+  Restore as RestoreIcon,
 } from '@material-ui/icons';
 import { Tooltip } from '@material-ui/core';
 import useStyles from './styles';
 
-function Options({ show }) {
+function Options({ show, noteIsDeleted }) {
   const classes = useStyles();
+
+  function onClickDeleteNote() {}
+
+  function onClickPermanentlyDeleteNote() {}
 
   return (
     <div
@@ -21,20 +26,37 @@ function Options({ show }) {
         show && classes.show_wrapper_options
       )}
     >
-      <Tooltip title="Editar...">
-        <EditIcon className={classes.options_icon} />
-      </Tooltip>
-      <Tooltip title="Ver...">
-        <VisibilityIcon className={classes.options_icon} />
-      </Tooltip>
-      <Tooltip title="Mover para outro lugar...">
-        <OpenInBrowserIcon className={classes.options_icon} />
-      </Tooltip>
-      <Tooltip title="Arquivar...">
-        <ArchiveIcon className={classes.options_icon} />
-      </Tooltip>
-      <Tooltip title="Deletar...">
-        <DeleteIcon className={classes.options_icon} />
+      {noteIsDeleted ? (
+        <>
+          <Tooltip title="Restaurar...">
+            <RestoreIcon className={classes.options_icon} />
+          </Tooltip>
+        </>
+      ) : (
+        <>
+          <Tooltip title="Editar...">
+            <EditIcon className={classes.options_icon} />
+          </Tooltip>
+          <Tooltip title="Ver...">
+            <VisibilityIcon className={classes.options_icon} />
+          </Tooltip>
+          <Tooltip title="Mover para outro lugar...">
+            <OpenInBrowserIcon className={classes.options_icon} />
+          </Tooltip>
+          <Tooltip title="Arquivar...">
+            <ArchiveIcon className={classes.options_icon} />
+          </Tooltip>
+        </>
+      )}
+      <Tooltip
+        title={noteIsDeleted ? `Deletar permanentemente...` : 'Deletar...'}
+      >
+        <DeleteIcon
+          onClick={
+            noteIsDeleted ? onClickDeleteNote : onClickPermanentlyDeleteNote
+          }
+          className={classes.options_icon}
+        />
       </Tooltip>
     </div>
   );
@@ -42,6 +64,7 @@ function Options({ show }) {
 
 Options.propTypes = {
   show: PropTypes.bool,
+  noteIsDeleted: PropTypes.bool,
 };
 
 export default Options;

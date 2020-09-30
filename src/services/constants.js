@@ -17,6 +17,8 @@ export const NOTES_GET_BY_USER_AND_WITHOUT_FOLDER = (userId) =>
 export const NOTES_PUT_IN_FOLDER = `${NOTES_DEFAULT}/putInFolder`;
 export const NOTES_GET_ALL_IN_FOLDER = (folderId) =>
   `${NOTES_DEFAULT}/getInFolder?folderId=${folderId}`;
+export const NOTES_GET_DELETED_BY_USER = (userId) =>
+  `${NOTES_DEFAULT}/getDeleted?userId=${userId}`;
 
 // FOLDERS
 const prefixFolder = 'folders';

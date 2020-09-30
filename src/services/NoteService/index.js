@@ -5,6 +5,7 @@ import {
   NOTES_GET_BY_USER_AND_WITHOUT_FOLDER,
   NOTES_GET_ALL_IN_FOLDER,
   NOTES_PUT_IN_FOLDER,
+  NOTES_GET_DELETED_BY_USER,
 } from '../constants';
 import defaultHandleError from '../handleErros';
 
@@ -73,6 +74,21 @@ const NoteService = {
     return new Promise((resolve, reject) => {
       axios
         .get(NOTES_GET_ALL_IN_FOLDER(folderId))
+        .then((res) => {
+          return resolve(res.data);
+        })
+        .catch((error) => {
+          return dontExecuteDefaultError
+            ? reject(error.response)
+            : reject(defaultHandleError(error.response));
+        });
+    });
+  },
+
+  getDeletedNotesByUser: (userId, dontExecuteDefaultError) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(NOTES_GET_DELETED_BY_USER(userId))
         .then((res) => {
           return resolve(res.data);
         })
