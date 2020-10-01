@@ -6,7 +6,7 @@ import { Typography } from '@material-ui/core';
 import useStyles from './styles';
 import Options from './components/Options';
 import NoteService from '../../../../services/NoteService';
-import { removeNote } from '../../actions';
+import { removeNote, showBoxVisualNote } from '../../actions';
 import { showSucessToast } from '../../../../utils/toast';
 
 function PaperNote({ id, title, content, color, onDrag, noteIsDeleted }) {
@@ -39,6 +39,10 @@ function PaperNote({ id, title, content, color, onDrag, noteIsDeleted }) {
     showSucessToast(response.msg);
   }
 
+  function onClickVisualModeNote() {
+    dispatch(showBoxVisualNote({ title, content, color }));
+  }
+
   function onDragStart(ev) {
     setIsHovered(false);
     onDrag(ev);
@@ -56,6 +60,7 @@ function PaperNote({ id, title, content, color, onDrag, noteIsDeleted }) {
         onClickDelete={onClickDeleteNote}
         onClickDeletePermanently={onClickDeletePermanentlyNote}
         onClickRestore={onClickRestoreNote}
+        onClickVisualMode={onClickVisualModeNote}
         show={isHovered}
         noteIsDeleted={noteIsDeleted}
       />

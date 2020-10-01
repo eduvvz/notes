@@ -9,3 +9,5 @@ export const ADD_NEW_FOLDER = `${prefix}ADD_NEW_FOLDER`;
 export const SHOW_BOX_NEW_FOLDER = `${prefix}SHOW_BOX_NEW_FOLDER`;
 export const HIDE_BOX_NEW_FOLDER = `${prefix}HIDE_BOX_NEW_FOLDER`;
 export const REMOVE_NOTE = `${prefix}REMOVE_NOTE`;
+export const SHOW_BOX_VISUAL_NOTE = `${prefix}SHOW_BOX_VISUAL_NOTE`;
+export const HIDE_BOX_VISUAL_NOTE = `${prefix}HIDE_BOX_VISUAL_NOTE`;

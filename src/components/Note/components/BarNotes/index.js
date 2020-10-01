@@ -3,7 +3,11 @@ import { Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import useStyles from './styles';
-import { showBoxNewFolder, showBoxNewNote } from '../../actions';
+import {
+  hideBoxVisualNote,
+  showBoxNewFolder,
+  showBoxNewNote,
+} from '../../actions';
 import ActionButton from '../../../UI/Buttons/ActionButton';
 import IconButton from '../../../UI/Buttons/IconButton';
 
@@ -13,6 +17,7 @@ function BarNote() {
   const router = useRouter();
 
   function onClickNewNote() {
+    dispatch(hideBoxVisualNote());
     dispatch(showBoxNewNote());
   }
 
@@ -30,7 +35,7 @@ function BarNote() {
         spacing={3}
         xs={12}
         sm={8}
-        md={5}
+        md={4}
         item
         container
         className={classes.bar_new_note}

@@ -8,6 +8,8 @@ import {
   HIDE_BOX_NEW_FOLDER,
   SHOW_BOX_NEW_FOLDER,
   REMOVE_NOTE,
+  SHOW_BOX_VISUAL_NOTE,
+  HIDE_BOX_VISUAL_NOTE,
 } from './constants';
 
 export const showBoxNewNote = () => ({
@@ -49,4 +51,13 @@ export const hideBoxNewFolder = () => ({
 export const removeNote = (payload) => ({
   type: REMOVE_NOTE,
   payload,
+});
+
+export const showBoxVisualNote = (payload) => ({
+  type: SHOW_BOX_VISUAL_NOTE,
+  payload,
+});
+
+export const hideBoxVisualNote = () => ({
+  type: HIDE_BOX_VISUAL_NOTE,
 });

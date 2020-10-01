@@ -14,6 +14,7 @@ function Options({
   onClickDelete,
   onClickDeletePermanently,
   onClickRestore,
+  onClickVisualMode,
   show,
   noteIsDeleted,
 }) {
@@ -41,7 +42,10 @@ function Options({
             <EditIcon className={classes.options_icon} />
           </Tooltip>
           <Tooltip title="Ver...">
-            <VisibilityIcon className={classes.options_icon} />
+            <VisibilityIcon
+              onClick={onClickVisualMode}
+              className={classes.options_icon}
+            />
           </Tooltip>
         </>
       )}
@@ -61,6 +65,7 @@ Options.propTypes = {
   onClickDelete: PropTypes.func,
   onClickDeletePermanently: PropTypes.func,
   onClickRestore: PropTypes.func,
+  onClickVisualMode: PropTypes.func,
   show: PropTypes.bool,
   noteIsDeleted: PropTypes.bool,
 };
