@@ -19,7 +19,7 @@ function useAuth() {
     };
 
     localStorage.setItem(USER_DATA, JSON.stringify(newUser));
-    localStorage.setItem(USER_TOKEN, JSON.stringify(user.token));
+    localStorage.setItem(USER_TOKEN, user.token);
     store.dispatch(setUserData(newUser));
     store.dispatch(setUserToken(user.token));
     route.push('/notes');
@@ -30,7 +30,7 @@ function useAuth() {
     const { user } = state;
     const userLocalStorage = {
       data: JSON.parse(localStorage.getItem(USER_DATA)),
-      token: JSON.parse(localStorage.getItem(USER_TOKEN)),
+      token: localStorage.getItem(USER_TOKEN),
     };
 
     if ((!user.data || !user.token) && !userLocalStorage.token) {
@@ -45,7 +45,7 @@ function useAuth() {
     const { user } = state;
     const userLocalStorage = {
       data: JSON.parse(localStorage.getItem(USER_DATA)),
-      token: JSON.parse(localStorage.getItem(USER_TOKEN)),
+      token: localStorage.getItem(USER_TOKEN),
     };
 
     if ((!user.data || !user.token) && !userLocalStorage.token) {

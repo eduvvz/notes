@@ -11,12 +11,13 @@ import useAuth from '../../utils/hooks/useAuth';
 
 function RegisterPage() {
   const { boxNewNote, boxNewFolder } = useSelector((state) => state.notes);
+  const user = useSelector((state) => state.user);
   const classes = useStyles();
   const { checkAuth } = useAuth();
 
   useEffect(() => {
     checkAuth();
-  }, []);
+  }, [user]);
 
   return (
     <Layout title="Suas notas">

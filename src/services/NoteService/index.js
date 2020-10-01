@@ -11,12 +11,17 @@ import {
   NOTES_RESTORE,
 } from '../constants';
 import defaultHandleError from '../handleErros';
+import { USER_TOKEN } from '../../utils/constants/localStorage';
+
+const getHeader = () => ({
+  'x-access-token': localStorage.getItem(USER_TOKEN),
+});
 
 const NoteService = {
   store: (body, dontExecuteDefaultError) => {
     return new Promise((resolve, reject) => {
       axios
-        .post(NOTES_DEFAULT, body)
+        .post(NOTES_DEFAULT, body, { headers: getHeader() })
         .then((res) => {
           return resolve(res.data);
         })
@@ -31,7 +36,7 @@ const NoteService = {
   getByUser: (userId, dontExecuteDefaultError) => {
     return new Promise((resolve, reject) => {
       axios
-        .get(NOTES_GET_BY_USER(userId))
+        .get(NOTES_GET_BY_USER(userId), { headers: getHeader() })
         .then((res) => {
           return resolve(res.data);
         })
@@ -46,7 +51,9 @@ const NoteService = {
   getByUserAndWithoutFolder: (userId, dontExecuteDefaultError) => {
     return new Promise((resolve, reject) => {
       axios
-        .get(NOTES_GET_BY_USER_AND_WITHOUT_FOLDER(userId))
+        .get(NOTES_GET_BY_USER_AND_WITHOUT_FOLDER(userId), {
+          headers: getHeader(),
+        })
         .then((res) => {
           return resolve(res.data);
         })
@@ -61,7 +68,7 @@ const NoteService = {
   putInFolder: (body, dontExecuteDefaultError) => {
     return new Promise((resolve, reject) => {
       axios
-        .put(NOTES_PUT_IN_FOLDER, body)
+        .put(NOTES_PUT_IN_FOLDER, body, { headers: getHeader() })
         .then((res) => {
           return resolve(res.data);
         })
@@ -76,7 +83,7 @@ const NoteService = {
   getAllNotesInFolder: (folderId, dontExecuteDefaultError) => {
     return new Promise((resolve, reject) => {
       axios
-        .get(NOTES_GET_ALL_IN_FOLDER(folderId))
+        .get(NOTES_GET_ALL_IN_FOLDER(folderId), { headers: getHeader() })
         .then((res) => {
           return resolve(res.data);
         })
@@ -91,7 +98,7 @@ const NoteService = {
   getDeletedNotesByUser: (userId, dontExecuteDefaultError) => {
     return new Promise((resolve, reject) => {
       axios
-        .get(NOTES_GET_DELETED_BY_USER(userId))
+        .get(NOTES_GET_DELETED_BY_USER(userId), { headers: getHeader() })
         .then((res) => {
           return resolve(res.data);
         })
@@ -106,7 +113,7 @@ const NoteService = {
   deleteNote: (noteId, dontExecuteDefaultError) => {
     return new Promise((resolve, reject) => {
       axios
-        .delete(NOTES_DELETE_BY_ID(noteId))
+        .delete(NOTES_DELETE_BY_ID(noteId), { headers: getHeader() })
         .then((res) => {
           return resolve(res.data);
         })
@@ -121,7 +128,9 @@ const NoteService = {
   deletePermanentlyNote: (noteId, dontExecuteDefaultError) => {
     return new Promise((resolve, reject) => {
       axios
-        .delete(NOTES_DELETE_PERMANENTLY_BY_ID(noteId))
+        .delete(NOTES_DELETE_PERMANENTLY_BY_ID(noteId), {
+          headers: getHeader(),
+        })
         .then((res) => {
           return resolve(res.data);
         })
@@ -136,7 +145,7 @@ const NoteService = {
   restore: (body, dontExecuteDefaultError) => {
     return new Promise((resolve, reject) => {
       axios
-        .put(NOTES_RESTORE, body)
+        .put(NOTES_RESTORE, body, { headers: getHeader() })
         .then((res) => {
           return resolve(res.data);
         })

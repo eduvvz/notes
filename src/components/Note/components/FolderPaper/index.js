@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { Typography } from '@material-ui/core';
-import { Folder as FolderIcon } from '@material-ui/icons';
+import {
+  Folder as FolderIcon,
+  MoreVert as MoreVertIcon,
+} from '@material-ui/icons';
 import useStyles from './styles';
 
 function FolderPaper({ name, onDropDraggable, onClick }) {
   const [isDragOver, setIsDragOver] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const classes = useStyles({ isDragOver });
 
   function onDragOver(ev) {
@@ -27,13 +32,26 @@ function FolderPaper({ name, onDropDraggable, onClick }) {
   return (
     <div
       className={classes.folder}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
       onClick={onClick}
     >
+      <div
+        className={clsx(classes.more_icon, isHovered && classes.show_more_icon)}
+      >
+        <MoreVertIcon
+          className={clsx(
+            classes.more_icon,
+            isHovered && classes.show_more_icon
+          )}
+        />
+      </div>
+
       <FolderIcon className={classes.folder_icon} />
-      <Typography>{name}</Typography>
+      <Typography className={classes.folder_name}>{name}</Typography>
     </div>
   );
 }

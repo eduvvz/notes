@@ -1,7 +1,6 @@
 import { showToastError } from '../utils/toast';
 
 function defaultHandleError({ status, data: { errors } }) {
-  // const { logout } = useAuth();
   if (status === 422) {
     return errors.map((error) => ({
       key: error.param,
@@ -11,7 +10,8 @@ function defaultHandleError({ status, data: { errors } }) {
   }
 
   if (status === 401) {
-    // TODO: Deslogar
+    // logout();
+    return showToastError('Logue novamente para continuar!');
   }
 
   return showToastError('Algo inesperado aconteceu!');
