@@ -6,11 +6,13 @@ import NoteService from '../../../../services/NoteService';
 import { setMyNotes } from '../../actions';
 import ListNotes from '../ListNotes';
 import Loader from '../../../UI/Loader';
+import useStyles from './styles';
 
 function FolderItems({ folderId, folderName = '' }) {
   const dispatch = useDispatch();
   const { myNotes } = useSelector((state) => state.notes);
   const [isLoading, setIsLoading] = useState(true);
+  const classes = useStyles();
 
   useEffect(() => {
     async function getAllNotesInFolder() {
@@ -33,7 +35,9 @@ function FolderItems({ folderId, folderName = '' }) {
       container
     >
       <Grid container justify="center">
-        <Typography gutterBottom>{folderName}</Typography>
+        <Typography gutterBottom className={classes.folder_title}>
+          {folderName}
+        </Typography>
       </Grid>
       {isLoading && <Loader />}
       {!isLoading && myNotes.length === 0 ? (

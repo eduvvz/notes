@@ -41,17 +41,12 @@ function FolderPaper({ name, onDropDraggable, onClick }) {
     >
       <div
         className={clsx(classes.more_icon, isHovered && classes.show_more_icon)}
-      >
-        <MoreVertIcon
-          className={clsx(
-            classes.more_icon,
-            isHovered && classes.show_more_icon
-          )}
-        />
-      </div>
+      />
 
       <FolderIcon className={classes.folder_icon} />
-      <Typography className={classes.folder_name}>{name}</Typography>
+      <Typography align="center" className={classes.folder_name}>
+        {name}
+      </Typography>
     </div>
   );
 }
