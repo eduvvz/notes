@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import { Container, Grid } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import Layout from '../../../components/Layout';
-import useStyles from './styles';
 import FolderItems from '../../../components/Note/components/FolderItems';
 import {
   showBackButton,
   hideBackButton,
 } from '../../../components/Layout/actions';
 import useAuth from '../../../utils/hooks/useAuth';
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    margin: theme.spacing(6, 0),
+    height: '100%',
+  },
+}));
 
 function FolderPage() {
   const dispatch = useDispatch();

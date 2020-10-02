@@ -27,7 +27,7 @@ function DeletedNotes() {
     }
 
     return () => dispatch(setMyNotes([]));
-  }, [user.id]);
+  }, [user?.id]);
 
   return (
     <Grid

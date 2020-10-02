@@ -1,8 +1,14 @@
 import React from 'react';
 import { Container, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../../components/Layout';
-import useStyles from './styles';
 import LoginBox from '../../components/User/components/LoginBox';
+
+const useStyles = makeStyles(() => ({
+  container: {
+    height: '100%',
+  },
+}));
 
 function LoginPage() {
   const classes = useStyles();
